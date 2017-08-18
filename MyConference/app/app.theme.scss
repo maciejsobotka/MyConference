@@ -1,20 +1,11 @@
 ﻿@import '../Content/theming';
 
 @include mat-core();
-$app-color-primary: mat-palette($mat-light-blue);
-$app-color-accent: mat-palette($mat-amber);
+$app-color-primary: mat-palette($mat-indigo);
+$app-color-accent: mat-palette($mat-brown);
 $color-app-warn:    mat-palette($mat-red);
-$app-theme: mat-light-theme($app-color-primary, $app-color-accent, $color-app-warn);
+$app-theme: mat-dark-theme($app-color-primary, $app-color-accent, $color-app-warn);
 
 @include angular-material-theme($app-theme);
 
 //To add another secondary theme: https://github.com/angular/material2/blob/master/guides/theming.md
-
-.dark-theme {
-  $dark-primary: mat-palette($mat-indigo);
-  $dark-accent: mat-palette($mat-brown);
-
-  $dark-theme: mat-dark-theme($dark-primary, $dark-accent);
-
-  @include angular-material-theme($dark-theme);
-}

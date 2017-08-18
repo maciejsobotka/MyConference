@@ -1,8 +1,8 @@
-<div fxLayout="column" [class.dark-theme]="isDarkTheme">
-    <md-sidenav-container>
+<div fxLayout="column">
+    <md-sidenav-container fullscreen>
         <md-sidenav #mainSideNav mode="over" closed>
             <md-toolbar>
-                <img src="../Content/img/logo.png" style="height:80%"> {{appName}}
+                <img src="../Content/img/logo.png" style="height:80%"><span class="m-x-lg">{{appName}}</span>
             </md-toolbar>
             <md-nav-list>
                 <a *ngFor="let navItem of mainMenuItems" 
@@ -11,8 +11,8 @@
                    [style.position]="'relative'"
                    routerLinkActive="selected"
                    [routerLink]="[navItem.path]">
-                    <!--<md-icon *ngIf="navItem.icon">{{navItem.icon}}</md-icon>-->
-                    <span>{{navItem.title}}</span>
+                    <md-icon>{{navItem.icon}}</md-icon>
+                    <span class="m-x-md">{{navItem.title}}</span>
                 </a>
             </md-nav-list>
         </md-sidenav>
@@ -25,13 +25,7 @@
             {{(activeMenuItem$ | async)?.title}}
             <span fxFlex></span>
 
-            <button md-icon-button [mdMenuTriggerFor]="themeMenu">
-                <md-icon>more_vert</md-icon>
-            </button>
         </md-toolbar>
         <router-outlet></router-outlet>
     </md-sidenav-container> 
-    <md-menu #themeMenu x-position="before">
-        <button md-menu-item (click)="toggleTheme()">Toggle Theme</button>
-    </md-menu>
 </div>

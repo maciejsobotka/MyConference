@@ -10,9 +10,7 @@ namespace MyConference.Controllers
         {
             return View("NgApp");
         }
-        [Route("trip")]
-        [Route("location")]
-        [Route("person")]
+        [Route("event")]
         public ActionResult AppBookmarkableRoutes()
         {
             return View("NgApp");

@@ -5,7 +5,7 @@
     "module": "system",
     "noEmitOnError": true,
     "noImplicitAny": false,
-    "outDir": "../dist/js",
+    "outDir": "../dist/app",
     "removeComments": false,
     "sourceMap": true,
     "target": "es5",

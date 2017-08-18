@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TripPageComponent } from './trip-page/trip-page.component';
+import { EventPageComponent } from './event-page/event-page.component';
 
 const routes: Routes = [{
-    path: 'trip',
-    component: TripPageComponent,
+    path: 'event',
+    component: EventPageComponent,
     data: {
-        title: 'Trip Finder'
+        icon: 'event',
+        title: 'Event Calendar'
     }
 }];
 
@@ -14,4 +15,4 @@ const routes: Routes = [{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TripRoutingModule { }
+export class EventRoutingModule { }

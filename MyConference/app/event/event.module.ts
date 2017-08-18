@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppCommonModule } from '../app-common/app-common.module';
 
-import { TripRoutingModule } from './trip-routing.module';
-import { TripPageComponent } from './trip-page/trip-page.component';
+import { EventRoutingModule } from './event-routing.module';
+import { EventPageComponent } from './event-page/event-page.component';
 
 @NgModule({
   imports: [
     CommonModule,
     AppCommonModule,
-    TripRoutingModule
+    EventRoutingModule
   ],
-  declarations: [TripPageComponent],
+  declarations: [EventPageComponent],
   exports: [
-      TripPageComponent
+      EventPageComponent
   ]
 })
-export class TripModule { }
+export class EventModule { }

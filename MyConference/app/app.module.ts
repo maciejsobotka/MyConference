@@ -10,7 +10,7 @@ import { AppCommonModule } from './app-common/app-common.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppToolbarService } from './app-toolbar/app-toolbar.service';
-import { TripModule } from './trip/trip.module';
+import { EventModule } from './event/event.module';
 
 import 'hammerjs';
 
@@ -25,9 +25,9 @@ import 'hammerjs';
         HttpModule,
         AppCommonModule,
         AppRoutingModule,
-        TripModule,
+        EventModule,
         RouterModule.forRoot([{
-            path: '', redirectTo: '/trip', pathMatch: 'full'
+            path: '', redirectTo: '/event', pathMatch: 'full'
         }])
     ],
     providers: [AppToolbarService],

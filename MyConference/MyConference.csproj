@@ -208,7 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.component.html" />
-    <Content Include="app\trip\trip-page\trip-page.component.html" />
+    <Content Include="app\event\event-page\event-page.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\logo.png" />
@@ -224,8 +224,8 @@
     <Content Include="App_Data\trips.json" />
     <Content Include="app\app.component.scss" />
     <Content Include="app\app.theme.scss" />
-    <Content Include="app\trip\trip-page\trip-page.component.scss" />
     <Content Include="Content\_theming.scss" />
+    <Content Include="app\event\event-page\event-page.component.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -291,9 +291,9 @@
     <TypeScriptCompile Include="app\app-toolbar\app-toolbar.service.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
-    <TypeScriptCompile Include="app\trip\trip-page\trip-page.component.ts" />
-    <TypeScriptCompile Include="app\trip\trip-routing.module.ts" />
-    <TypeScriptCompile Include="app\trip\trip.module.ts" />
+    <TypeScriptCompile Include="app\event\event-page\event-page.component.ts" />
+    <TypeScriptCompile Include="app\event\event-routing.module.ts" />
+    <TypeScriptCompile Include="app\event\event.module.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
