@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConference", "MyConference\MyConference.csproj", "{0A776B84-0632-4C95-A772-E96AA6619831}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConferenceModels", "MyConferenceModels\MyConferenceModels.csproj", "{B6CE5B66-BC1A-4C02-95F7-45739A2C7453}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MyConferenceDb", "MyConferenceDb\MyConferenceDb.sqlproj", "{7CE55F70-B457-453C-8FF2-9EE9B99467B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConferenceDataGenerator", "MyConferenceDataGenerator\MyConferenceDataGenerator.csproj", "{2FB97CF8-572D-4E83-A78B-DBD153B84AD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,8 +31,15 @@ Global
 		{7CE55F70-B457-453C-8FF2-9EE9B99467B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CE55F70-B457-453C-8FF2-9EE9B99467B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7CE55F70-B457-453C-8FF2-9EE9B99467B1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2FB97CF8-572D-4E83-A78B-DBD153B84AD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FB97CF8-572D-4E83-A78B-DBD153B84AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FB97CF8-572D-4E83-A78B-DBD153B84AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FB97CF8-572D-4E83-A78B-DBD153B84AD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B51AD23C-0E3C-4740-8327-688B6C8D70BF}
 	EndGlobalSection
 EndGlobal
