@@ -211,13 +211,13 @@
   <ItemGroup>
     <Content Include="app\app.component.html" />
     <Content Include="app\event\event-page\event-page.component.html" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <None Include="Content\css\_common.scss" />
     <Content Include="Content\img\logo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\site.css" />
     <Content Include="gulpfile.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -226,7 +226,7 @@
     <Content Include="App_Data\trips.json" />
     <Content Include="app\app.component.scss" />
     <Content Include="app\app.theme.scss" />
-    <Content Include="Content\_theming.scss" />
+    <Content Include="Content\css\_theming.scss" />
     <Content Include="app\event\event-page\event-page.component.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

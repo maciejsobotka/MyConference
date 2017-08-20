@@ -16,6 +16,13 @@ namespace MyConferenceModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public System.DateTime Date { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
+        public string Speaker { get; set; }
+        public string Topic { get; set; }
+        public string Chair { get; set; }
+        public string Location { get; set; }
+        public Nullable<short> Type { get; set; }
     }
 }

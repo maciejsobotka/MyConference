@@ -61,4 +61,10 @@
   <ItemGroup>
     <Build Include="Events.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="GenerateEvents.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="MyConferenceDb.refactorlog" />
+  </ItemGroup>
 </Project>

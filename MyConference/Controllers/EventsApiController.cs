@@ -61,7 +61,7 @@ namespace MyConference.Controllers
         // GET: api/EventsApi
         public IQueryable<Event> GetEvents()
         {
-            return db.Events;
+            return db.Events.OrderBy(e => e.Date).ThenBy(e => e.StartTime);
         }
 
         // POST: api/EventsApi

@@ -1,12 +1,16 @@
-<div class="content" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="16px">
-    <md-card fxFlex="80">
-        event component works!
-    </md-card>
-
-    <md-card fxFlex="20">
-        aside
-    </md-card>
-    <md-card *ngFor="let event of Events">
-        event.Name
+<div *ngFor="let eventsGroup of groupedEvents; let i = index" class="content horizontalLine" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="16px" fxLayoutWrap>
+    <h4 fxFlex="100">{{eventsGroup.GroupingValue | date:'dd/MM/yyyy'}}</h4>
+    <md-card *ngFor="let event of eventsGroup.Events" fxFlex="FlexLength(i)" class="horizontalLine m-y-sm">
+        <md-card-title>
+            {{event.Name}}
+        </md-card-title>
+        <md-card-content>
+            {{event.StartTime | date:'HH:mm'}} - {{event.EndTime | date:'HH:mm'}}<br/>
+            {{event.Speaker}}<br/>
+            {{event.Topic}}<br/>
+            {{event.Chair}}<br/>
+            {{event.Location}}<br/>
+        </md-card-content>
     </md-card>
 </div>
+        
