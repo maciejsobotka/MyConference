@@ -1,31 +1,24 @@
-<div fxLayout="column">
-    <md-sidenav-container fullscreen>
-        <md-sidenav #mainSideNav mode="over" closed>
-            <md-toolbar>
-                <img src="../Content/img/logo.png" style="height:80%"><span class="m-x-lg">{{appName}}</span>
-            </md-toolbar>
-            <md-nav-list>
-                <a *ngFor="let navItem of mainMenuItems" 
-                   md-list-item
-                   md-ripple
-                   [style.position]="'relative'"
-                   routerLinkActive="selected"
-                   [routerLink]="[navItem.path]">
-                    <md-icon>{{navItem.icon}}</md-icon>
-                    <span class="m-x-md">{{navItem.title}}</span>
-                </a>
-            </md-nav-list>
-        </md-sidenav>
-        <md-toolbar color="primary">
-            <button md-icon-button (click)="mainSideNav.toggle()">
-                <md-icon *ngIf="mainSideNav.opened">chevron_left</md-icon>
-                <md-icon *ngIf="!mainSideNav.opened">menu</md-icon>
-            </button>
-            <!--<md-icon *ngIf="navItem.icon">{{navItem.icon}}</md-icon>-->
+<md-toolbar class="main-toolbar" color="primary">
+    <button md-icon-button (click)="mainSideNav.toggle()">
+        <md-icon *ngIf="mainSideNav.opened">chevron_left</md-icon>
+        <md-icon *ngIf="!mainSideNav.opened">menu</md-icon>
+    </button>
+        <img src="../Content/img/logo.png" style="height: 80%"><span>{{appName}}</span>
+</md-toolbar>
+<md-sidenav-container fullscreen>
+    <md-sidenav #mainSideNav mode="push" closed>
+        <md-nav-list>
+            <a *ngFor="let navItem of mainMenuItems" md-list-item md-ripple
+               routerLinkActive="selected"
+               [routerLink]="[navItem.path]">
+                <md-icon class="m-x-sm">{{navItem.icon}}</md-icon>
+                <span>{{navItem.title}}</span>
+            </a>
+        </md-nav-list>
+    </md-sidenav>
+    <md-card class="tab-toolbar" color="primary">
             {{(activeMenuItem$ | async)?.title}}
-            <span fxFlex></span>
+    </md-card>
+    <router-outlet></router-outlet>
+</md-sidenav-container> 
 
-        </md-toolbar>
-        <router-outlet></router-outlet>
-    </md-sidenav-container> 
-</div>

@@ -2,6 +2,10 @@
     padding: 12px;
 }
 
+.horizontalLineThin {
+    border-top: thick solid #FFFFFF;
+    border-width: 2px;
+}
 
 .horizontalLine {
     border-top: thick solid #FFFFFF;
@@ -60,4 +64,54 @@
 .m-y-lg {
     margin-top: 24px;
     margin-bottom: 24px;
+}
+
+.p-x-0 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.p-x-xs {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.p-x-sm {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.p-x-md {
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.p-x-lg {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.p-y-0 {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.p-y-xs {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.p-y-sm {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.p-y-md {
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.p-y-lg {
+    padding-top: 24px;
+    padding-bottom: 24px;
 }

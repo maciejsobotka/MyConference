@@ -23,3 +23,42 @@ html, body {
 md-sidenav {
     width: 250px;
 }
+
+md-sidenav-container {
+    margin-top: 64px;
+}
+
+@media (max-width: 600px) {
+    md-sidenav-container {
+        margin-top: 56px;
+    }
+
+}
+
+md-nav-list {
+    padding-top: 0 !important;
+}
+
+md-toolbar {
+    font-weight: 400 !important;
+}
+
+md-card.tab-toolbar {
+    font-size: 16px;
+    font-weight: 300 !important;
+    color: white !important;
+    align-items: center;
+}
+
+md-card.events-date {
+    margin: 0 !important;
+    padding: 2px 6px 2px 6px !important;
+}
+
+md-card-title, md-card-content {
+    font-weight: 300 !important;
+}
+
+a {
+    font-weight: 300 !important;
+}

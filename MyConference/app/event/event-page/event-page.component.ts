@@ -26,7 +26,7 @@ export class EventPageComponent implements OnInit {
         }
     }
 
-    get FlexLength(index: number): number {
+    flexLength(index: number): number {
         return 100/ this.groupedEvents[index].Events.length;
     }
 
