@@ -25,6 +25,7 @@ export class AppToolbarService {
                 return active;
             });
     }
+
     getMenuItems(): MenuItem[] {
         return this.router.config
             .filter(route => route.data && route.data.title)
@@ -35,7 +36,8 @@ export class AppToolbarService {
                 return {
                     path: route.path,
                     title: route.data.title,
-                    icon: route.data.icon
+                    icon: route.data.icon,
+                    hidden: route.data.hidden
                 };
             });
     }

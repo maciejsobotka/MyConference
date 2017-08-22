@@ -211,8 +211,10 @@
   <ItemGroup>
     <Content Include="app\app.component.html" />
     <Content Include="app\event\event-page\event-page.component.html" />
+    <Content Include="app\home\home-page\home-page.component.html" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="app\home\home-page\home-page.component.scss" />
     <None Include="Content\css\_common.scss" />
     <Content Include="Content\img\logo.png" />
     <Content Include="favicon.ico" />
@@ -296,6 +298,9 @@
     <TypeScriptCompile Include="app\event\event-page\event-page.component.ts" />
     <TypeScriptCompile Include="app\event\event-routing.module.ts" />
     <TypeScriptCompile Include="app\event\event.module.ts" />
+    <TypeScriptCompile Include="app\home\home-page\home-page.component.ts" />
+    <TypeScriptCompile Include="app\home\home-routing.module.ts" />
+    <TypeScriptCompile Include="app\home\home.module.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

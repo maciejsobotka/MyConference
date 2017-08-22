@@ -10,6 +10,7 @@ import { AppCommonModule } from './app-common/app-common.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppToolbarService } from './app-toolbar/app-toolbar.service';
+import { HomeModule } from './home/home.module';
 import { EventModule } from './event/event.module';
 
 import 'hammerjs';
@@ -25,9 +26,10 @@ import 'hammerjs';
         HttpModule,
         AppCommonModule,
         AppRoutingModule,
+        HomeModule,
         EventModule,
         RouterModule.forRoot([{
-            path: '', redirectTo: '/event', pathMatch: 'full'
+            path: '', redirectTo: '/home', pathMatch: 'full'
         }])
     ],
     providers: [AppToolbarService],
