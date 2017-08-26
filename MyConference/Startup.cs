@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
-using MyConference;
 using Owin;
 
-[assembly: OwinStartup(typeof(Startup))]
+[assembly: OwinStartup(typeof(MyConference.Startup))]
+
 namespace MyConference
 {
     public partial class Startup

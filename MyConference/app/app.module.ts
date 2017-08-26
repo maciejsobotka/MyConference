@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AppToolbarService } from './app-toolbar/app-toolbar.service';
 import { HomeModule } from './home/home.module';
 import { EventModule } from './event/event.module';
+import { LoginModule } from './login/login.module';
 
 import 'hammerjs';
 
@@ -28,6 +29,7 @@ import 'hammerjs';
         AppRoutingModule,
         HomeModule,
         EventModule,
+        LoginModule,
         RouterModule.forRoot([{
             path: '', redirectTo: '/home', pathMatch: 'full'
         }])

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConference", "MyConference\MyConference.csproj", "{0A776B84-0632-4C95-A772-E96AA6619831}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConferenceModels", "MyConferenceModels\MyConferenceModels.csproj", "{B6CE5B66-BC1A-4C02-95F7-45739A2C7453}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MyConferenceDb", "MyConferenceDb\MyConferenceDb.sqlproj", "{7CE55F70-B457-453C-8FF2-9EE9B99467B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConferenceDataGenerator", "MyConferenceDataGenerator\MyConferenceDataGenerator.csproj", "{2FB97CF8-572D-4E83-A78B-DBD153B84AD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConference", "MyConference\MyConference.csproj", "{4AD1DBCF-461D-4022-94E9-B30A8D70956B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0A776B84-0632-4C95-A772-E96AA6619831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A776B84-0632-4C95-A772-E96AA6619831}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A776B84-0632-4C95-A772-E96AA6619831}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A776B84-0632-4C95-A772-E96AA6619831}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B6CE5B66-BC1A-4C02-95F7-45739A2C7453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6CE5B66-BC1A-4C02-95F7-45739A2C7453}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6CE5B66-BC1A-4C02-95F7-45739A2C7453}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,6 +31,10 @@ Global
 		{2FB97CF8-572D-4E83-A78B-DBD153B84AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FB97CF8-572D-4E83-A78B-DBD153B84AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FB97CF8-572D-4E83-A78B-DBD153B84AD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AD1DBCF-461D-4022-94E9-B30A8D70956B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AD1DBCF-461D-4022-94E9-B30A8D70956B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AD1DBCF-461D-4022-94E9-B30A8D70956B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AD1DBCF-461D-4022-94E9-B30A8D70956B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
