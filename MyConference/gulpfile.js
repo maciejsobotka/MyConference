@@ -7,24 +7,17 @@ var del = require('delete');
 
 gulp.task("dist-libs", () => {
     gulp.src([
-            'core-js/client/**',
+            'core-js/client/*.js',
             'systemjs/dist/system.src.js',
-            'reflect-metadata/**',
-            'rxjs/**',
-            'zone.js/dist/**',
-            '@angular/**',
-            '@ngrx/**',
-            'deep-freeze-strict/**',
-            'ngrx-store-freeze/**',
-            '@swimlane/ngx-datatable/release/**',
-            'tassign/**',
-            'lodash/**',
-            'jquery/dist/jquery.*js',
+            'reflect-metadata/Reflect.js',
+            'zone.js/dist/*.js',
+            '@angular/**/*.umd.js',
+            'rxjs/**/*.js',
             'hammerjs/hammer.js'
     ], {
         cwd: "node_modules/**"
     })
-        .pipe(gulp.dest('./dist/libs'));
+        .pipe(gulp.dest('dist/libs'));
 });
 
 gulp.task('clean-libs', function () {
