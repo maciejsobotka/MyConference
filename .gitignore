@@ -79,6 +79,8 @@ _[Ss]cripts
 ######################
 *.js
 *.map
+!MyConference/Scripts/*.js
+!MyConference/Scripts/*.map
 ######################
 # Angular            #
 ######################
