@@ -10,10 +10,7 @@ gulp.task("dist-libs", () => {
             'core-js/client/*.js',
             'systemjs/dist/system.src.js',
             'reflect-metadata/Reflect.js',
-            'zone.js/dist/*.js',
-            '@angular/**/*.umd.js',
-            'rxjs/**/*.js',
-            'hammerjs/hammer.js'
+            'zone.js/dist/*.js'
     ], {
         cwd: "node_modules/**"
     })
