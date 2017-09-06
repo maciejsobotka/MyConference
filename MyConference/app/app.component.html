@@ -1,33 +1,39 @@
-<md-toolbar class="main-toolbar" color="primary">
-    <button md-icon-button (click)="mainSideNav.toggle()">
-        <md-icon *ngIf="mainSideNav.opened">chevron_left</md-icon>
-        <md-icon *ngIf="!mainSideNav.opened">menu</md-icon>
-    </button>
-    <button md-button class="button-toolbar" [routerLink]="['\home']"><img class="icon-toolbar" src="../Content/img/logo.png"><span class="home-toolbar">{{appName}}</span></button>
-    <span fxFlex></span>
+<ng-container *ngIf="!(activeMenuItem$ | async)?.hiddenToolbar">
+    <md-toolbar class="main-toolbar" color="primary">
+        <button md-icon-button (click)="mainSideNav.toggle()">
+            <md-icon *ngIf="mainSideNav.opened">chevron_left</md-icon>
+            <md-icon *ngIf="!mainSideNav.opened">menu</md-icon>
+        </button>
+        <button md-button class="button-toolbar" [routerLink]="['\home']"><img class="icon-toolbar" src="../Content/img/logo.png"><span class="home-toolbar">{{appName}}</span></button>
+        <span fxFlex></span>
 
-    <button md-icon-button [mdMenuTriggerFor]="userMenu">
-        <md-icon>account_circle</md-icon>
-    </button>
-</md-toolbar>
-<md-menu #userMenu x-position="before">
-    <button md-menu-item [routerLink]="['login']">Sign In</button>
-</md-menu>
-<md-sidenav-container fullscreen>
-    <md-sidenav #mainSideNav mode="push" closed>
-        <md-nav-list>
-            <a *ngFor="let navItem of mainMenuItems" md-list-item md-ripple
-               routerLinkActive="selected"
-               [class.hidden]="navItem.hidden"
-               [routerLink]="[navItem.path]">
-                <md-icon class="m-x-sm">{{navItem.icon}}</md-icon>
-                <span>{{navItem.title}}</span>
-            </a>
-        </md-nav-list>
-    </md-sidenav>
-    <md-card class="tab-toolbar" color="primary">
+        <button md-icon-button [mdMenuTriggerFor]="userMenu">
+            <md-icon>account_circle</md-icon>
+        </button>
+    </md-toolbar>
+    <md-menu #userMenu x-position="before">
+        <button md-menu-item [routerLink]="['\login']">Sign In</button>
+    </md-menu>
+    <md-sidenav-container fullscreen>
+        <md-sidenav #mainSideNav mode="push" closed>
+            <md-nav-list>
+                <ng-container *ngFor="let navItem of mainMenuItems">
+                    <a *ngIf="!navItem.hidden" md-list-item md-ripple
+                       [routerLink]="[navItem.path]"
+                       (click)="mainSideNav.toggle()">
+                        <md-icon class="m-x-sm">{{navItem.icon}}</md-icon>
+                        <span>{{navItem.title}}</span>
+                    </a>
+                </ng-container>
+            </md-nav-list>
+        </md-sidenav>
+        <md-card class="tab-toolbar" color="primary">
             {{(activeMenuItem$ | async)?.title}}
-    </md-card>
+        </md-card>
+        <router-outlet></router-outlet>
+    </md-sidenav-container>
+</ng-container>
+<ng-container *ngIf="(activeMenuItem$ | async)?.hiddenToolbar">
     <router-outlet></router-outlet>
-</md-sidenav-container> 
+</ng-container>
 

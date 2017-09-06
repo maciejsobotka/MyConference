@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
+
 
 export class MenuItem {
     path: string;
     title: string;
     icon?: string;
+    hidden?: boolean;
+    hiddenToolbar?: boolean;
 }
 
 @Injectable()
@@ -37,7 +41,8 @@ export class AppToolbarService {
                     path: route.path,
                     title: route.data.title,
                     icon: route.data.icon,
-                    hidden: route.data.hidden
+                    hidden: route.data.hidden,
+                    toolbarHidden: route.data.hiddenToolbar
                 };
             });
     }
@@ -48,11 +53,18 @@ export class AppToolbarService {
         while ((route = route.firstChild));
         return lastMenu;
     }
+
     private extractMenu(route: ActivatedRoute): MenuItem {
         let cfg = route.routeConfig;
-        return cfg && cfg.data && cfg.data.title
-            ? { path: cfg.path, title: cfg.data.title, icon: cfg.data.icon }
-            : undefined
+        return cfg && cfg.data
+            ? {
+                path: cfg.path,
+                title: cfg.data.title,
+                icon: cfg.data.icon,
+                hidden: cfg.data.hidden,
+                hiddenToolbar: cfg.data.hiddenToolbar
+            }
+            : undefined;
     }
 }
 

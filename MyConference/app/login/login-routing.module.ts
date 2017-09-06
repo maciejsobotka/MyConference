@@ -8,7 +8,8 @@ const routes: Routes = [{
     data: {
         icon: 'Login',
         title: 'Login Page',
-        hidden: true
+        hidden: true,
+        hiddenToolbar: true
     }
 }];
 

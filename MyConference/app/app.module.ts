@@ -29,10 +29,7 @@ import 'hammerjs';
         AppRoutingModule,
         HomeModule,
         EventModule,
-        LoginModule,
-        RouterModule.forRoot([{
-            path: '', redirectTo: '/home', pathMatch: 'full'
-        }])
+        LoginModule
     ],
     providers: [AppToolbarService],
     bootstrap: [AppComponent]

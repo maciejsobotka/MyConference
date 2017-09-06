@@ -9,9 +9,9 @@ import { LoginPageComponent } from './login-page/login-page.component';
 @NgModule({
   imports: [
     CommonModule,
-      AppCommonModule,
-      FormsModule,
-      ReactiveFormsModule,
+    AppCommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     LoginRoutingModule
   ],
   declarations: [LoginPageComponent],
