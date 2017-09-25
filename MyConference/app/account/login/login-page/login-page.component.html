@@ -1,0 +1,25 @@
+<div class="full-height" fxLayout="column" fxLayoutAlign="center center">
+    <md-card class="login-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <img class="logo" src="../Content/img/logo.png"/>
+        <form fxLayout="column" fxLayoutGap="6px" fxLayoutAlign="center center">
+            <md-input-container>
+                <input mdInput placeholder="Email" [(ngModel)]="email" [formControl]="emailFormControl">
+                <md-error *ngIf="emailFormControl.hasError('pattern')">
+                    Please enter a valid email address
+                </md-error>
+                <md-error *ngIf="emailFormControl.hasError('required')">
+                    Email is <strong>required</strong>
+                </md-error>
+            </md-input-container>
+            <md-input-container>
+                <input mdInput type="password" placeholder="Password" [(ngModel)]="password" [formControl]="passwordFormControl">
+                <md-error *ngIf="passwordFormControl.hasError('required')">
+                    Password is <strong>required</strong>
+                </md-error>
+            </md-input-container>
+            <button md-button (click)="login()">Login</button>
+        </form>
+    </md-card>
+</div>
+
+

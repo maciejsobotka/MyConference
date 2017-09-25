@@ -191,10 +191,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\account\register\register-page\register-page.component.html" />
     <Content Include="app\app.component.html" />
     <Content Include="app\event\event-page\event-page.component.html" />
     <Content Include="app\home\home-page\home-page.component.html" />
-    <Content Include="app\login\login-page\login-page.component.html" />
+    <Content Include="app\account\login\login-page\login-page.component.html" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\img\logo.png" />
@@ -208,12 +209,13 @@
     <Content Include="app\app.theme.scss" />
     <Content Include="app\event\event-page\event-page.component.scss" />
     <Content Include="app\home\home-page\home-page.component.scss" />
-    <Content Include="app\login\login-page\login-page.component.scss" />
+    <Content Include="app\account\login\login-page\login-page.component.scss" />
     <Content Include="app\tsconfig.json" />
     <Content Include="Content\css\_common.scss" />
     <Content Include="Content\css\_theming.scss" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
+    <Content Include="app\account\register\register-page\register-page.component.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -266,6 +268,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\account\register\register-page\register-page.component.ts" />
+    <TypeScriptCompile Include="app\account\register\register-routing.module.ts" />
+    <TypeScriptCompile Include="app\account\register\register.module.ts" />
     <TypeScriptCompile Include="app\app-common\app-common.module.ts" />
     <TypeScriptCompile Include="app\app-routing.module.ts" />
     <TypeScriptCompile Include="app\app-toolbar\app-toolbar.service.ts" />
@@ -277,9 +282,9 @@
     <TypeScriptCompile Include="app\home\home-page\home-page.component.ts" />
     <TypeScriptCompile Include="app\home\home-routing.module.ts" />
     <TypeScriptCompile Include="app\home\home.module.ts" />
-    <TypeScriptCompile Include="app\login\login-page\login-page.component.ts" />
-    <TypeScriptCompile Include="app\login\login-routing.module.ts" />
-    <TypeScriptCompile Include="app\login\login.module.ts" />
+    <TypeScriptCompile Include="app\account\login\login-page\login-page.component.ts" />
+    <TypeScriptCompile Include="app\account\login\login-routing.module.ts" />
+    <TypeScriptCompile Include="app\account\login\login.module.ts" />
     <TypeScriptCompile Include="typings\globals\core-js\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />

@@ -12,7 +12,8 @@
         </button>
     </md-toolbar>
     <md-menu #userMenu x-position="before">
-        <button md-menu-item [routerLink]="['\login']">Sign In</button>
+        <button md-menu-item [routerLink]="['login']">Sign In</button>
+        <button md-menu-item [routerLink]="['register']">Register</button>
     </md-menu>
     <md-sidenav-container fullscreen>
         <md-sidenav #mainSideNav mode="push" closed>

@@ -18,6 +18,7 @@ namespace MyConference.Controllers
         [Route("home")]
         [Route("event")]
         [Route("login")]
+        [Route("register")]
         public ActionResult AppBookmarkableRoutes()
         {
             return View("NgApp");
