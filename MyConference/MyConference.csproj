@@ -196,8 +196,6 @@
     <Content Include="app\event\event-page\event-page.component.html" />
     <Content Include="app\home\home-page\home-page.component.html" />
     <Content Include="app\account\login\login-page\login-page.component.html" />
-    <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\img\logo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -276,6 +274,7 @@
     <TypeScriptCompile Include="app\app-toolbar\app-toolbar.service.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\common\data-helper.ts" />
     <TypeScriptCompile Include="app\event\event-page\event-page.component.ts" />
     <TypeScriptCompile Include="app\event\event-routing.module.ts" />
     <TypeScriptCompile Include="app\event\event.module.ts" />

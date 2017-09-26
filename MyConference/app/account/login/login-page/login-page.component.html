@@ -1,23 +1,24 @@
 <div class="full-height" fxLayout="column" fxLayoutAlign="center center">
-    <md-card class="login-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+    <md-card class="account-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
         <img class="logo" src="../Content/img/logo.png"/>
-        <form fxLayout="column" fxLayoutGap="6px" fxLayoutAlign="center center">
+        <form [formGroup]="form" fxLayout="column" fxLayoutGap="6px" fxLayoutAlign="center center">
+            <md-error *ngIf="formError" class="server-error"><md-icon fxFlex="14">error_outline</md-icon>{{formError}}</md-error>
             <md-input-container>
-                <input mdInput placeholder="Email" [(ngModel)]="email" [formControl]="emailFormControl">
-                <md-error *ngIf="emailFormControl.hasError('pattern')">
+                <input mdInput placeholder="Email" formControlName="email">
+                <md-error *ngIf="form.get('email').hasError('pattern')">
                     Please enter a valid email address
                 </md-error>
-                <md-error *ngIf="emailFormControl.hasError('required')">
+                <md-error *ngIf="form.get('email').hasError('required')">
                     Email is <strong>required</strong>
                 </md-error>
             </md-input-container>
             <md-input-container>
-                <input mdInput type="password" placeholder="Password" [(ngModel)]="password" [formControl]="passwordFormControl">
-                <md-error *ngIf="passwordFormControl.hasError('required')">
+                <input mdInput type="password" placeholder="Password" formControlName="password">
+                <md-error *ngIf="form.get('password').hasError('required')">
                     Password is <strong>required</strong>
                 </md-error>
             </md-input-container>
-            <button md-button (click)="login()">Login</button>
+            <button md-button (click)="login()">Log In</button>
         </form>
     </md-card>
 </div>

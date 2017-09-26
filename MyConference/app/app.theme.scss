@@ -49,6 +49,15 @@ md-card.tab-toolbar {
     align-items: center;
 }
 
+md-card.account-card {
+    width: 300px;
+}
+
+md-error.server-error {
+    font-size: 14px !important;
+    font-weight: 300 !important;
+}
+
 button.button-toolbar {
     height: 80%;
     padding-left: 4px !important;

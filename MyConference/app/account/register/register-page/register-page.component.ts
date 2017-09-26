@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
+
+import { DataHelper } from '../../../common/data-helper';
 
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -13,24 +15,32 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
 })
 export class RegisterPageComponent {
     private headers = new Headers({ 'Content-Type': 'application/json' });
-    private email: string;
-    private password: string;
 
-    emailFormControl = new FormControl('', [
-        Validators.required,
-        Validators.pattern(EMAIL_REGEX)]);
+    formError: string;
 
-    passwordFormControl = new FormControl('', Validators.required);
+    form = new FormGroup({
+        email: new FormControl('', [Validators.required, Validators.pattern(EMAIL_REGEX)]),
+        password: new FormControl('', Validators.required)
+    });
 
     register() {
         var registerData = {
-            Email: this.email,
-            Password: this.password,
-            ConfirmPassword: this.password
+            Email: this.form.value.email,
+            Password: this.form.value.password,
+            ConfirmPassword: this.form.value.password
         }
 
         this.http.post('/api/Account/Register', JSON.stringify(registerData),
-            new RequestOptions({ headers: this.headers })).subscribe();
+            new RequestOptions({ headers: this.headers }))
+            .subscribe(res => { }, error => {
+                var errorBody = JSON.parse(error['_body']);
+                if (DataHelper.hasValue(errorBody.ModelState['model.Password'])) {
+                    this.formError = JSON.parse(error['_body']).ModelState['model.Password'][0];
+                }
+                if (DataHelper.hasValue(errorBody.ModelState[''])) {
+                    this.formError = JSON.parse(error['_body']).ModelState[''][0];
+                }
+            });
     }
 
     constructor(private http: Http) {

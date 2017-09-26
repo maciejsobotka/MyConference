@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 
@@ -13,23 +13,25 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
 })
 export class LoginPageComponent {
     private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    private email: string;
-    private password: string;
 
-    emailFormControl = new FormControl('', [
-        Validators.required,
-        Validators.pattern(EMAIL_REGEX)]);
+    formError: string;
 
-    passwordFormControl = new FormControl('', Validators.required);
+    form = new FormGroup({
+        email: new FormControl('',[Validators.required, Validators.pattern(EMAIL_REGEX) ]),
+        password: new FormControl('', Validators.required)
+    });
 
     login() {
-        this.http.post('/Token', "userName=" + encodeURIComponent(this.email) +
-            "&password=" + encodeURIComponent(this.password) +
-            "&grant_type=password",
-            new RequestOptions({ headers: this.headers })).subscribe();
+        this.formError = null;
+        if (this.form.valid) {
+            this.http.post('/Token',
+                "userName=" + encodeURIComponent(this.form.value.email) + "&password=" + encodeURIComponent(this.form.value.password) + "&grant_type=password",
+                new RequestOptions({ headers: this.headers }))
+                .subscribe(res => {}, error => this.formError = JSON.parse(error['_body']).error_description);
+        }
     }
 
     constructor(private http: Http) {
-        
+        this.formError = null;
     }
 }
