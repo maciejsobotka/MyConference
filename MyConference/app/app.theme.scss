@@ -24,12 +24,12 @@ md-sidenav {
     width: 250px;
 }
 
-md-sidenav-container {
+md-sidenav-container.with-margin {
     margin-top: 64px;
 }
 
 @media (max-width: 600px) {
-    md-sidenav-container {
+    md-sidenav-container.with-margin {
         margin-top: 56px;
     }
 }

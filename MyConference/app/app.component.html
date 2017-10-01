@@ -5,7 +5,7 @@
                 <md-icon *ngIf="mainSideNav.opened">chevron_left</md-icon>
                 <md-icon *ngIf="!mainSideNav.opened">menu</md-icon>
             </button>
-            <button md-button class="button-toolbar" [routerLink]="['\home']"><img class="icon-toolbar" src="../Content/img/logo.png"><span class="home-toolbar">{{appName}}</span></button>
+            <button md-button class="button-toolbar" [routerLink]="['\home']" (click)="mainSideNav.close()"><img class="icon-toolbar" src="../Content/img/logo.png"><span class="home-toolbar">{{appName}}</span></button>
             <span fxFlex></span>
 
             <button md-icon-button [mdMenuTriggerFor]="userMenu">
@@ -16,26 +16,23 @@
             <button *ngIf="!toolbarService.isAuthorized" md-menu-item [routerLink]="['login']">Sign In</button>
             <button *ngIf="toolbarService.isAuthorized" md-menu-item [routerLink]="['home']" (click)="logOut()">Log Out</button>
         </md-menu>
-        <md-sidenav-container fullscreen>
-            <md-sidenav #mainSideNav mode="push" closed>
-                <md-nav-list>
-                    <ng-container *ngFor="let navItem of mainMenuItems">
-                        <a *ngIf="!navItem.hidden" md-list-item md-ripple
-                           [routerLink]="[navItem.path]"
-                           (click)="mainSideNav.toggle()">
-                            <md-icon class="m-x-sm">{{navItem.icon}}</md-icon>
-                            <span>{{navItem.title}}</span>
-                        </a>
-                    </ng-container>
-                </md-nav-list>
-            </md-sidenav>
-            <md-card class="tab-toolbar" color="primary">
-                {{activeItem.title}}
-            </md-card>
-            <router-outlet></router-outlet>
-        </md-sidenav-container>
     </ng-container>
-    <ng-container *ngIf="activeItem.hiddenToolbar">
+    <md-sidenav-container [ngClass]="{'with-margin': !activeItem.hiddenToolbar}" fullscreen>
+        <md-sidenav #mainSideNav mode="push" closed>
+            <md-nav-list>
+                <ng-container *ngFor="let navItem of mainMenuItems">
+                    <a *ngIf="!navItem.hidden" md-list-item md-ripple
+                        [routerLink]="[navItem.path]"
+                        (click)="mainSideNav.close()">
+                        <md-icon class="m-x-sm">{{navItem.icon}}</md-icon>
+                        <span>{{navItem.title}}</span>
+                    </a>
+                </ng-container>
+            </md-nav-list>
+        </md-sidenav>
+        <md-card *ngIf="!activeItem.hiddenToolbar" class="tab-toolbar" color="primary">
+            {{activeItem.title}}
+        </md-card>
         <router-outlet></router-outlet>
-    </ng-container>
+    </md-sidenav-container>
 </ng-container>
