@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 
-import { DataHelper } from '../../../common/data-helper';
+import { DataHelper } from '../../../utils/data-helper';
+import { SessionHelper } from '../../../utils/session-helper';
 
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -32,18 +34,24 @@ export class RegisterPageComponent {
 
         this.http.post('/api/Account/Register', JSON.stringify(registerData),
             new RequestOptions({ headers: this.headers }))
-            .subscribe(res => { }, error => {
-                var errorBody = JSON.parse(error['_body']);
+            .subscribe(() => {
+                this.http.post('/Token',
+                        "userName=" + encodeURIComponent(this.form.value.email) + "&password=" + encodeURIComponent(this.form.value.password) + "&grant_type=password",
+                        new RequestOptions({ headers: this.headers }))
+                    .subscribe(res => {
+                        SessionHelper.logIn(res.json());
+                        this.router.navigate(['/home']);
+                    }, error => this.formError = error.json().error_description);
+            }, error => {
+                var errorBody = error.json();
                 if (DataHelper.hasValue(errorBody.ModelState['model.Password'])) {
-                    this.formError = JSON.parse(error['_body']).ModelState['model.Password'][0];
+                    this.formError = errorBody.ModelState['model.Password'][0];
                 }
                 if (DataHelper.hasValue(errorBody.ModelState[''])) {
-                    this.formError = JSON.parse(error['_body']).ModelState[''][0];
+                    this.formError = error.json().ModelState[''][0];
                 }
             });
     }
 
-    constructor(private http: Http) {
-        
-    }
+    constructor(private http: Http, private router: Router) {}
 }

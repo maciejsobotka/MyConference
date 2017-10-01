@@ -274,7 +274,7 @@
     <TypeScriptCompile Include="app\app-toolbar\app-toolbar.service.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
-    <TypeScriptCompile Include="app\common\data-helper.ts" />
+    <TypeScriptCompile Include="app\utils\data-helper.ts" />
     <TypeScriptCompile Include="app\event\event-page\event-page.component.ts" />
     <TypeScriptCompile Include="app\event\event-routing.module.ts" />
     <TypeScriptCompile Include="app\event\event.module.ts" />
@@ -284,6 +284,7 @@
     <TypeScriptCompile Include="app\account\login\login-page\login-page.component.ts" />
     <TypeScriptCompile Include="app\account\login\login-routing.module.ts" />
     <TypeScriptCompile Include="app\account\login\login.module.ts" />
+    <TypeScriptCompile Include="app\utils\session-helper.ts" />
     <TypeScriptCompile Include="typings\globals\core-js\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />

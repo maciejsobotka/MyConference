@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 
+import { SessionHelper } from '../../../utils/session-helper';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -27,11 +29,14 @@ export class LoginPageComponent {
             this.http.post('/Token',
                 "userName=" + encodeURIComponent(this.form.value.email) + "&password=" + encodeURIComponent(this.form.value.password) + "&grant_type=password",
                 new RequestOptions({ headers: this.headers }))
-                .subscribe(res => {}, error => this.formError = JSON.parse(error['_body']).error_description);
+                .subscribe(res => {
+                    SessionHelper.logIn(res.json());
+                    this.router.navigate(['/home']);
+                }, error => this.formError = error.json().error_description);
         }
     }
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private router: Router) {
         this.formError = null;
     }
 }

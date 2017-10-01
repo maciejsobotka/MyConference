@@ -19,6 +19,8 @@
                 </md-error>
             </md-input-container>
             <button md-button (click)="login()">Log In</button>
+            <small><a class="link" [routerLink]="['/register']">Don't have an account?</a></small>
+            <small><a class="link" [routerLink]="['/home']">Go back home</a></small>
         </form>
     </md-card>
 </div>

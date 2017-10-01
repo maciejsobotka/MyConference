@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 
+import { SessionHelper } from '../utils/session-helper';
 
 export class MenuItem {
     path: string;
@@ -28,6 +29,10 @@ export class AppToolbarService {
                 this.titleService.setTitle(active.title);
                 return active;
             });
+    }
+
+    get isAuthorized(): boolean {
+        return SessionHelper.isAuthorized();
     }
 
     getMenuItems(): MenuItem[] {
