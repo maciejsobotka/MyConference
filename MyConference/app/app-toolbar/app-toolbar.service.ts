@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
-
 import { SessionHelper } from '../utils/session-helper';
 
 export class MenuItem {
@@ -23,10 +22,11 @@ export class AppToolbarService {
     constructor(private router: Router, private titleService: Title) {
         this.activeMenuItem$ = this.router.events
             .filter(e => e instanceof NavigationEnd)
-            .map(_ => this.router.routerState.root)
+            .map(() => this.router.routerState.root)
             .map(route => {
                 let active = this.lastRouteWithMenuItem(route.root);
                 this.titleService.setTitle(active.title);
+                console.log(active.title);
                 return active;
             });
     }
