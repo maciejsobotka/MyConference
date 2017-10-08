@@ -13,8 +13,8 @@
             </button>
         </md-toolbar>
         <md-menu #userMenu x-position="before">
-            <button *ngIf="!toolbarService.isAuthorized" md-menu-item [routerLink]="['login']">Sign In</button>
-            <button *ngIf="toolbarService.isAuthorized" md-menu-item [routerLink]="['home']" (click)="logOut()">Log Out</button>
+            <button *ngIf="!authService.isAuthorized" md-menu-item [routerLink]="['login']">Sign In</button>
+            <button *ngIf="authService.isAuthorized" md-menu-item [routerLink]="['home']" (click)="logOut()">Log Out</button>
         </md-menu>
     </ng-container>
     <md-sidenav-container [ngClass]="{'with-margin': !activeItem.hiddenToolbar}" fullscreen>

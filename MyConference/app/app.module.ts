@@ -5,14 +5,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppCommonModule } from './app-common/app-common.module';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppToolbarService } from './app-toolbar/app-toolbar.service';
-import { HomeModule } from './home/home.module';
-import { EventModule } from './event/event.module';
-import { LoginModule } from './account/login/login.module';
-import { RegisterModule } from './account/register/register.module';
+
+import { AppCommonModule } from './shared/app-common.module';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeModule } from './components/home/home.module';
+import { EventModule } from './components/event/event.module';
+import { LoginModule } from './components/account/login/login.module';
+import { RegisterModule } from './components/account/register/register.module';
+
+import { ToolbarService } from './shared/services/toolbar.service';
+import { AuthService } from './shared/services/auth.service';
 
 import 'hammerjs';
 
@@ -32,7 +35,10 @@ import 'hammerjs';
         LoginModule,
         RegisterModule
     ],
-    providers: [AppToolbarService],
+    providers: [
+        ToolbarService,
+        AuthService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

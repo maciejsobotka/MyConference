@@ -1,26 +1,28 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AppToolbarService, MenuItem } from './app-toolbar/app-toolbar.service';
 
-import { SessionHelper } from './utils/session-helper';
+import { ToolbarService } from './shared/services/toolbar.service';
+import { AuthService } from './shared/services/auth.service';
+
+import { IMenuItem } from './shared/models/menu-item';
 
 @Component({
   selector: 'app-root',
   templateUrl: '/dist/html/app.component.html',
   styleUrls: ['/dist/css/app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
 
-    activeMenuItem$: Observable<MenuItem>;
+    activeMenuItem$: Observable<IMenuItem>;
     appName: string = 'My Conference';
     mainMenuItems: any;
     isAuthorized: boolean;
 
     logOut() {
-        SessionHelper.logOut();
+        this.authService.logOut();
     }
 
-    constructor(private toolbarService: AppToolbarService) {
+    constructor(private authService: AuthService, private toolbarService: ToolbarService) {
         this.mainMenuItems = this.toolbarService.getMenuItems();
         this.activeMenuItem$ = this.toolbarService.activeMenuItem$;
     }

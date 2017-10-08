@@ -3,22 +3,14 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 
+import { IMenuItem } from '../models/menu-item';
+
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 
-import { SessionHelper } from '../utils/session-helper';
-
-export class MenuItem {
-    path: string;
-    title: string;
-    icon?: string;
-    hidden?: boolean;
-    hiddenToolbar?: boolean;
-}
-
 @Injectable()
-export class AppToolbarService {
-    activeMenuItem$: Observable<MenuItem>;
+export class ToolbarService {
+    activeMenuItem$: Observable<IMenuItem>;
 
     constructor(private router: Router, private titleService: Title) {
         this.activeMenuItem$ = this.router.events
@@ -31,11 +23,7 @@ export class AppToolbarService {
             });
     }
 
-    get isAuthorized(): boolean {
-        return SessionHelper.isAuthorized();
-    }
-
-    getMenuItems(): MenuItem[] {
+    getMenuItems(): IMenuItem[] {
         return this.router.config
             .filter(route => route.data && route.data.title)
             .map(route => {
@@ -52,14 +40,14 @@ export class AppToolbarService {
             });
     }
 
-    private lastRouteWithMenuItem(route: ActivatedRoute): MenuItem {
+    private lastRouteWithMenuItem(route: ActivatedRoute): IMenuItem {
         let lastMenu = undefined;
         do { lastMenu = this.extractMenu(route) || lastMenu; }
         while ((route = route.firstChild));
         return lastMenu;
     }
 
-    private extractMenu(route: ActivatedRoute): MenuItem {
+    private extractMenu(route: ActivatedRoute): IMenuItem {
         let cfg = route.routeConfig;
         return cfg && cfg.data
             ? {

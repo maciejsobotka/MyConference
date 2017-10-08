@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Http, Headers, RequestOptions } from '@angular/http';
-
-import { DataHelper } from '../../../utils/data-helper';
-import { SessionHelper } from '../../../utils/session-helper';
+import { AuthService } from '../../../../shared/services/auth.service';
+import { DataHelper } from '../../../../shared/utils/data-helper';
 
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -39,7 +38,7 @@ export class RegisterPageComponent {
                         "userName=" + encodeURIComponent(this.form.value.email) + "&password=" + encodeURIComponent(this.form.value.password) + "&grant_type=password",
                         new RequestOptions({ headers: this.headers }))
                     .subscribe(res => {
-                        SessionHelper.logIn(res.json());
+                        this.authService.logIn(res.json());
                         this.router.navigate(['/home']);
                     }, error => this.formError = error.json().error_description);
             }, error => {
@@ -53,5 +52,5 @@ export class RegisterPageComponent {
             });
     }
 
-    constructor(private http: Http, private router: Router) {}
+    constructor(private http: Http, private router: Router, private authService: AuthService) {}
 }

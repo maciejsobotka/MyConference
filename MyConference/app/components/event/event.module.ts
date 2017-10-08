@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppCommonModule } from '../app-common/app-common.module';
+import { AppCommonModule } from '../../shared/app-common.module';
 
 import { EventRoutingModule } from './event-routing.module';
 import { EventPageComponent } from './event-page/event-page.component';

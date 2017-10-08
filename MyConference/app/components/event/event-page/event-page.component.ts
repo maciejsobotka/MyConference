@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable'
-
 import { MdDialog } from '@angular/material';
+
+import { EventDetailComponent } from '../event-detail/event-detail.component';
+import { IEvent } from '../../../shared/models/event';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
-import { EventDetailComponent } from '../event-detail/event-detail.component';
 
 
 @Component({
@@ -17,14 +17,14 @@ import { EventDetailComponent } from '../event-detail/event-detail.component';
 })
 export class EventPageComponent implements OnInit {
     private eventsUrl: string = 'api/EventsApi';
-    private events: Event[];
+    private events: IEvent[];
     private groupedEvents: GroupedEvents[];
 
-    get Events(): Event[] {
+    get Events(): IEvent[] {
         return this.events;
     };
 
-    set Events(value: Event[]) {
+    set Events(value: IEvent[]) {
         if (value !== null) {
             this.events = value;
         }
@@ -36,8 +36,8 @@ export class EventPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.getEventes().subscribe(
-            comments => {
-                this.Events = comments;
+            evnts => {
+                this.Events = evnts;
                 this.groupEvents();
             }, //Bind to view
             err => {
@@ -47,7 +47,7 @@ export class EventPageComponent implements OnInit {
 
     }
 
-    getEventes(): Observable<Event[]> {
+    getEventes(): Observable<IEvent[]> {
         return this.http.get(this.eventsUrl)
             // ...and calling .json() on the response to return data
             .map((res: Response) => res.json())
@@ -57,7 +57,7 @@ export class EventPageComponent implements OnInit {
 
     private groupEvents() {
         let date = this.Events[0].Date;
-        let events = new Array<Event>();
+        let events = new Array<IEvent>();
         let group = new GroupedEvents();
         for (var event of this.Events) {
             if (event.Date !== date) {
@@ -72,7 +72,7 @@ export class EventPageComponent implements OnInit {
         }
     }
 
-    openDialog(data: Event): void {
+    openDialog(data: IEvent): void {
         let dialogRef = this.dialog.open(EventDetailComponent, {
             width: '80vw',
             data: data
@@ -84,35 +84,17 @@ export class EventPageComponent implements OnInit {
     }
 
     constructor(private http: Http, public dialog: MdDialog) {
-        this.Events = new Array<Event>();
+        this.Events = new Array<IEvent>();
         this.groupedEvents = new Array<GroupedEvents>();
     }
 
 }
 
-export class Event {
-    Name: string;
-    Date: Date;
-    StartTime: Date;
-    EndTime: Date;
-    Speaker: string;
-    Topic: string;
-    Chair: string;
-    Location: string;
-    Type: number;
-
-    constructor() {
-        this.Date = new Date();
-        this.StartTime = new Date();
-        this.EndTime = new Date();
-    }
-}
-
 export class GroupedEvents {
     GroupingValue: Date;
-    Events: Event[];
+    Events: IEvent[];
 
     constructor() {
-        this.Events = new Array<Event>();
+        this.Events = new Array<IEvent>();
     }
 }
