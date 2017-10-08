@@ -4,6 +4,7 @@ import { AppCommonModule } from '../app-common/app-common.module';
 
 import { EventRoutingModule } from './event-routing.module';
 import { EventPageComponent } from './event-page/event-page.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 @NgModule({
   imports: [
@@ -11,9 +12,14 @@ import { EventPageComponent } from './event-page/event-page.component';
     AppCommonModule,
     EventRoutingModule
   ],
-  declarations: [EventPageComponent],
+  declarations: [
+      EventPageComponent,
+      EventDetailComponent
+  ],
   exports: [
-      EventPageComponent
-  ]
+      EventPageComponent,
+      EventDetailComponent
+  ],
+  entryComponents: [EventDetailComponent]
 })
 export class EventModule { }

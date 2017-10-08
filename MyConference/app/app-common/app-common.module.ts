@@ -19,7 +19,8 @@ import { //only import the portions you will use to optimize build (MaterialModu
     MdSlideToggleModule,
     MdSnackBarModule,
     MdTabsModule,
-    MdToolbarModule
+    MdToolbarModule,
+    MdDialogModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -44,6 +45,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       MdSlideToggleModule,
       MdSnackBarModule,
       MdToolbarModule,
+      MdDialogModule,
       MdTabsModule,
       FlexLayoutModule
   ],
@@ -67,6 +69,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       MdSlideToggleModule,
       MdSnackBarModule,
       MdToolbarModule,
+      MdDialogModule,
       MdTabsModule,
       FlexLayoutModule
   ]

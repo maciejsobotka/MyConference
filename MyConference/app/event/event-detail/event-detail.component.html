@@ -1,0 +1,33 @@
+<div mat-dialog-title>
+    <span fxFlex></span>
+    <button md-icon-button (click)="onNoClick()">
+        <md-icon>star_border</md-icon>
+    </button>
+    <button md-icon-button (click)="onNoClick()">
+        <md-icon>clear</md-icon>
+    </button>
+</div>
+<div mat-dialog-content class="modal-content">
+    <h2 class="modal-title">{{data.Name}}</h2>
+    <div fxLayout="row" fxLayoutAlign=" center">
+        <md-icon>access_time</md-icon>
+        <span class="m-x-sm">{{data.StartTime | date:'HH:mm'}} - {{data.EndTime | date:'HH:mm'}}</span>
+    </div>
+    <div *ngIf="data.Speaker" fxLayout="row" fxLayoutAlign=" center">
+        <md-icon>person</md-icon>
+        <span class="m-x-sm">{{data.Speaker}}</span>
+    </div>
+    <div *ngIf="data.Topic" fxLayout="row" fxLayoutAlign=" center">
+        <md-icon>forum</md-icon>
+        <span class="m-x-sm">{{data.Topic}}</span>
+    </div>
+    <div *ngIf="data.Chair" fxLayout="row" fxLayoutAlign=" center">
+        <md-icon>school</md-icon>
+        <span class="m-x-sm">{{data.Chair}}</span>
+    </div>
+    <div *ngIf="data.Location" fxLayout="row" fxLayoutAlign=" center">
+        <md-icon>navigation</md-icon>
+        <span class="m-x-sm">{{data.Location}}</span>
+    </div>
+</div>
+        

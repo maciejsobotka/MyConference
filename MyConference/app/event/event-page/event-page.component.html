@@ -1,6 +1,6 @@
 <div *ngFor="let eventsGroup of groupedEvents; let i = index" class="content horizontalLineThin" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="16px" fxLayoutWrap>
     <md-card class="events-date" fxFlex="100">{{eventsGroup.GroupingValue | date:'dd/MM/yyyy'}}</md-card>
-    <md-card *ngFor="let event of eventsGroup.Events" fxFlex="flexLength(i)" class="horizontalLine m-y-sm">
+    <md-card *ngFor="let event of eventsGroup.Events" fxFlex="flexLength(i)" class="horizontalLine m-y-sm" (click)="openDialog(event)">
         <md-card-title>
             {{event.Name}}
         </md-card-title>

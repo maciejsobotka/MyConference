@@ -193,6 +193,7 @@
   <ItemGroup>
     <Content Include="app\account\register\register-page\register-page.component.html" />
     <Content Include="app\app.component.html" />
+    <Content Include="app\event\event-detail\event-detail.component.html" />
     <Content Include="app\event\event-page\event-page.component.html" />
     <Content Include="app\home\home-page\home-page.component.html" />
     <Content Include="app\account\login\login-page\login-page.component.html" />
@@ -214,6 +215,7 @@
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="app\account\register\register-page\register-page.component.scss" />
+    <Content Include="app\event\event-detail\event-detail.component.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -274,6 +276,7 @@
     <TypeScriptCompile Include="app\app-toolbar\app-toolbar.service.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\event\event-detail\event-detail.component.ts" />
     <TypeScriptCompile Include="app\utils\data-helper.ts" />
     <TypeScriptCompile Include="app\event\event-page\event-page.component.ts" />
     <TypeScriptCompile Include="app\event\event-routing.module.ts" />
