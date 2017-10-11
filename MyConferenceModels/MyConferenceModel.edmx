@@ -20,8 +20,57 @@
           <Property Name="Location" Type="nvarchar" MaxLength="50" />
           <Property Name="Type" Type="smallint" />
         </EntityType>
+        <EntityType Name="UserEvents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_UserEvents_ToEvents">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="UserEvents" Type="Self.UserEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEvents">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserEvents_ToUsers">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserEvents" Type="Self.UserEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEvents">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MyConferenceDbModelStoreContainer">
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserEvents" EntityType="Self.UserEvents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UserEvents_ToEvents" Association="Self.FK_UserEvents_ToEvents">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="UserEvents" EntitySet="UserEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserEvents_ToUsers" Association="Self.FK_UserEvents_ToUsers">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserEvents" EntitySet="UserEvents" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -29,7 +78,17 @@
       <Schema Namespace="MyConferenceDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MyConferenceDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Events" EntityType="MyConferenceDbModel.Event" />
-        </EntityContainer>
+          <EntitySet Name="UserEvents" EntityType="MyConferenceDbModel.UserEvent" />
+          <EntitySet Name="Users" EntityType="MyConferenceDbModel.User" />
+          <AssociationSet Name="FK_UserEvents_ToEvents" Association="MyConferenceDbModel.FK_UserEvents_ToEvents">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="UserEvent" EntitySet="UserEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserEvents_ToUsers" Association="MyConferenceDbModel.FK_UserEvents_ToUsers">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserEvent" EntitySet="UserEvents" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="Id" />
@@ -44,8 +103,51 @@
           <Property Name="Chair" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="Int16" />
+          <NavigationProperty Name="UserEvents" Relationship="MyConferenceDbModel.FK_UserEvents_ToEvents" FromRole="Event" ToRole="UserEvent" />
         </EntityType>
-      </Schema>
+        <EntityType Name="UserEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="MyConferenceDbModel.FK_UserEvents_ToEvents" FromRole="UserEvent" ToRole="Event" />
+          <NavigationProperty Name="User" Relationship="MyConferenceDbModel.FK_UserEvents_ToUsers" FromRole="UserEvent" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserEvents" Relationship="MyConferenceDbModel.FK_UserEvents_ToUsers" FromRole="User" ToRole="UserEvent" />
+        </EntityType>
+        <Association Name="FK_UserEvents_ToEvents">
+          <End Type="MyConferenceDbModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="MyConferenceDbModel.UserEvent" Role="UserEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEvent">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserEvents_ToUsers">
+          <End Type="MyConferenceDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="MyConferenceDbModel.UserEvent" Role="UserEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEvent">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -67,7 +169,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="UserEvents">
+            <EntityTypeMapping TypeName="MyConferenceDbModel.UserEvent">
+              <MappingFragment StoreEntitySet="UserEvents">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MyConferenceDbModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

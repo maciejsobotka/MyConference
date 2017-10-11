@@ -81,6 +81,12 @@
       <DependentUpon>MyConferenceModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>MyConferenceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserEvent.cs">
+      <DependentUpon>MyConferenceModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

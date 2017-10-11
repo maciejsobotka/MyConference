@@ -5,6 +5,7 @@ import { AppCommonModule } from '../../shared/app-common.module';
 import { EventRoutingModule } from './event-routing.module';
 import { EventPageComponent } from './event-page/event-page.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
+import { EventPersonalPageComponent } from './event-personal-page/event-personal-page.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
   ],
   declarations: [
       EventPageComponent,
-      EventDetailComponent
+      EventDetailComponent,
+      EventPersonalPageComponent
   ],
   exports: [
       EventPageComponent,

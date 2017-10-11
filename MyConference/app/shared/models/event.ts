@@ -1,4 +1,5 @@
 ﻿export interface IEvent {
+    Id: number
     Name: string;
     Date: Date;
     StartTime: Date;

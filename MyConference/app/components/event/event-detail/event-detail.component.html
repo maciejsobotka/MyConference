@@ -1,6 +1,6 @@
 <div mat-dialog-title>
     <span fxFlex></span>
-    <button md-icon-button (click)="onNoClick()">
+    <button *ngIf="authService.isAuthorized" md-icon-button (click)="onStarClick()">
         <md-icon>star_border</md-icon>
     </button>
     <button md-icon-button (click)="onNoClick()">

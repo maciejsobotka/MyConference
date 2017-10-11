@@ -26,5 +26,7 @@ namespace MyConferenceModels
         }
     
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<UserEvent> UserEvents { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

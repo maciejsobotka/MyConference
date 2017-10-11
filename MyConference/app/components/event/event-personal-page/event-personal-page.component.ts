@@ -11,14 +11,18 @@ import 'rxjs/add/operator/catch';
 
 
 @Component({
-    selector: 'event-page',
-    templateUrl: 'dist/html/components/event/event-page/event-page.component.html',
-    styleUrls: ['dist/css/components/event/event-page/event-page.component.css']
+    selector: 'event-personal-page',
+    templateUrl: 'dist/html/components/event/event-personal-page/event-personal-page.component.html',
+    styleUrls: ['dist/css/components/event/event-personal-page/event-personal-page.component.css']
 })
-export class EventPageComponent implements OnInit {
-    private eventsUrl: string = 'api/EventsApi';
+export class EventPersonalPageComponent implements OnInit {
+    private eventsUrl: string = 'api/UserEventsApi';
     private events: IEvent[];
     private groupedEvents: GroupedEvents[];
+
+    get AnyEvents(): boolean {
+        return this.Events.length > 0;
+    }
 
     get Events(): IEvent[] {
         return this.events;
@@ -38,20 +42,17 @@ export class EventPageComponent implements OnInit {
         this.getEventes().subscribe(
             evnts => {
                 this.Events = evnts;
-                this.groupEvents();
-            }, //Bind to view
-            err => {
-                // Log errors if any
-                console.log(err);
-            });
+                if (this.AnyEvents) {
+                    this.groupEvents();
+                }
+            },
+            err => console.log(err));
 
     }
 
     getEventes(): Observable<IEvent[]> {
         return this.http.get(this.eventsUrl)
-            // ...and calling .json() on the response to return data
             .map((res: Response) => res.json())
-            //...errors if any
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 

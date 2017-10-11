@@ -34,6 +34,10 @@ export class RegisterPageComponent {
         this.http.post('/api/Account/Register', JSON.stringify(registerData),
             new RequestOptions({ headers: this.headers }))
             .subscribe(() => {
+                this.http.post('/api/UsersApi', JSON.stringify({ Id: 0, Name: registerData.Email }),
+                    new RequestOptions({ headers: this.headers }))
+                    .subscribe(() => { },
+                    error => this.formError = error.json().error_description);
                 this.http.post('/Token',
                         "userName=" + encodeURIComponent(this.form.value.email) + "&password=" + encodeURIComponent(this.form.value.password) + "&grant_type=password",
                         new RequestOptions({ headers: this.headers }))

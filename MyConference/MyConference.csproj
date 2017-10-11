@@ -178,6 +178,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EventsApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserEventsApiController.cs" />
+    <Compile Include="Controllers\UsersApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -195,6 +197,7 @@
     <Content Include="app\app.component.html" />
     <Content Include="app\components\event\event-detail\event-detail.component.html" />
     <Content Include="app\components\event\event-page\event-page.component.html" />
+    <Content Include="app\components\event\event-personal-page\event-personal-page.component.html" />
     <Content Include="app\components\home\home-page\home-page.component.html" />
     <Content Include="app\components\account\login\login-page\login-page.component.html" />
     <Content Include="Content\img\logo.png" />
@@ -216,6 +219,7 @@
     <Content Include="package.json" />
     <Content Include="app\components\account\register\register-page\register-page.component.scss" />
     <Content Include="app\components\event\event-detail\event-detail.component.scss" />
+    <Content Include="app\components\event\event-personal-page\event-personal-page.component.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -271,6 +275,7 @@
     <TypeScriptCompile Include="app\components\account\register\register-page\register-page.component.ts" />
     <TypeScriptCompile Include="app\components\account\register\register-routing.module.ts" />
     <TypeScriptCompile Include="app\components\account\register\register.module.ts" />
+    <TypeScriptCompile Include="app\components\event\event-personal-page\event-personal-page.component.ts" />
     <TypeScriptCompile Include="app\shared\app-common.module.ts" />
     <TypeScriptCompile Include="app\app-routing.module.ts" />
     <TypeScriptCompile Include="app\shared\models\event.ts" />

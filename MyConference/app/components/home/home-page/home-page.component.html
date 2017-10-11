@@ -1,3 +1,3 @@
 <md-card>Home</md-card>
-<md-card *ngIf="authService.isAuthorized">Welcome!</md-card>
+<md-card *ngIf="authService.isAuthorized">Welcome {{authService.token.userName}}!</md-card>
         

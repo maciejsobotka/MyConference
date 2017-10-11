@@ -7,8 +7,12 @@ export class AuthService {
         return DataHelper.hasValue(sessionStorage.getItem('token'));
     }
 
+    get token(): any {
+        return JSON.parse(sessionStorage.getItem('token'));
+    }
+
     logIn(token: string) {
-        sessionStorage.setItem('token', token);
+        sessionStorage.setItem('token', JSON.stringify(token));
     }
 
     logOut() {

@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Events.sql" />
+    <Build Include="Users.sql" />
+    <Build Include="UserEvents.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GenerateEvents.sql" />

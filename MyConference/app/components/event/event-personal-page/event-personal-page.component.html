@@ -1,0 +1,22 @@
+<md-card *ngIf="!AnyEvents">
+    You didn't select ant events you are<br/>
+    Check out all avaliable events <a class="link" [routerLink]="['/event']">here</a>
+</md-card>
+<ng-container *ngIf="AnyEvents">
+    <div *ngFor="let eventsGroup of groupedEvents; let i = index" class="content horizontalLineThin" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="16px" fxLayoutWrap>
+        <md-card class="events-date" fxFlex="100">{{eventsGroup.GroupingValue | date:'dd/MM/yyyy'}}</md-card>
+        <md-card *ngFor="let event of eventsGroup.Events" fxFlex="flexLength(i)" class="horizontalLine m-y-sm" (click)="openDialog(event)">
+            <md-card-title>
+                {{event.Name}}
+            </md-card-title>
+            <md-card-content>
+                {{event.StartTime | date:'HH:mm'}} - {{event.EndTime | date:'HH:mm'}}<br/>
+                <ng-container *ngIf="event.Speaker">{{event.Speaker}}<br /></ng-container>
+                <ng-container *ngIf="event.Topic">{{event.Topic}}<br /></ng-container>
+                <ng-container *ngIf="event.Chair">{{event.Chair}}<br /></ng-container>
+                <ng-container *ngIf="event.Location">{{event.Location}}<br /></ng-container>
+            </md-card-content>
+        </md-card>
+    </div>
+</ng-container>
+        
