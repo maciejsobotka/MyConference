@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -63,6 +62,13 @@ namespace MyConference.Controllers
         public IQueryable<UserEvent> GetUserEvents()
         {
             return db.UserEvents;
+        }
+
+        // GET: api/UserEventsApi/username
+        public IQueryable<UserEvent> GetUserEvents(string userName)
+        {
+            var user = db.Users.FirstOrDefault(u => u.Name == userName);
+            return db.UserEvents.Where(ue => ue.UserId == user.Id);
         }
 
         // POST: api/UserEventsApi

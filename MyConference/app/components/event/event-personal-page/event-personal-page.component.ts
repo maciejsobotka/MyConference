@@ -9,6 +9,9 @@ import { IEvent } from '../../../shared/models/event';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import { AuthService } from '../../../shared/services/auth.service';
+import { ArrayHelper } from '../../../shared/utils/array-helper';
+
 
 @Component({
     selector: 'event-personal-page',
@@ -16,7 +19,7 @@ import 'rxjs/add/operator/catch';
     styleUrls: ['dist/css/components/event/event-personal-page/event-personal-page.component.css']
 })
 export class EventPersonalPageComponent implements OnInit {
-    private eventsUrl: string = 'api/UserEventsApi';
+    private eventsUrl: string = 'api/EventsApi';
     private events: IEvent[];
     private groupedEvents: GroupedEvents[];
 
@@ -41,6 +44,7 @@ export class EventPersonalPageComponent implements OnInit {
     ngOnInit(): void {
         this.getEventes().subscribe(
             evnts => {
+                console.log(evnts);
                 this.Events = evnts;
                 if (this.AnyEvents) {
                     this.groupEvents();
@@ -51,25 +55,20 @@ export class EventPersonalPageComponent implements OnInit {
     }
 
     getEventes(): Observable<IEvent[]> {
-        return this.http.get(this.eventsUrl)
+        return this.http.get(this.eventsUrl + '/?userName=' + this.authService.token.userName)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     private groupEvents() {
-        let date = this.Events[0].Date;
-        let events = new Array<IEvent>();
-        let group = new GroupedEvents();
-        for (var event of this.Events) {
-            if (event.Date !== date) {
-                group.GroupingValue = date;
-                group.Events = events;
-                this.groupedEvents.push(group);
-                events = [];
-                group = new GroupedEvents();
-                date = event.Date;
-            }
-            events.push(event);
+        let dates = this.Events.map(e => e.Date);
+        let uniqDates = ArrayHelper.getUniqeValues(dates);
+
+        for (let date of uniqDates) {
+            let group = new GroupedEvents();
+            group.GroupingValue = date;
+            group.Events = this.Events.filter(e => e.Date === date);
+            this.groupedEvents.push(group);
         }
     }
 
@@ -77,14 +76,14 @@ export class EventPersonalPageComponent implements OnInit {
         let dialogRef = this.dialog.open(EventDetailComponent, {
             width: '80vw',
             data: data
-    });
+        });
 
         dialogRef.afterClosed().subscribe(() => {
             console.log('The dialog was closed');
         });
     }
 
-    constructor(private http: Http, public dialog: MdDialog) {
+    constructor(private http: Http, public dialog: MdDialog, private authService: AuthService) {
         this.Events = new Array<IEvent>();
         this.groupedEvents = new Array<GroupedEvents>();
     }

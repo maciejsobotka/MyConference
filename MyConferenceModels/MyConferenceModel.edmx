@@ -76,7 +76,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyConferenceDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="MyConferenceDbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MyConferenceDbEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Events" EntityType="MyConferenceDbModel.Event" />
           <EntitySet Name="UserEvents" EntityType="MyConferenceDbModel.UserEvent" />
           <EntitySet Name="Users" EntityType="MyConferenceDbModel.User" />
@@ -88,7 +88,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserEvent" EntitySet="UserEvents" />
           </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="Id" />
@@ -186,7 +186,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

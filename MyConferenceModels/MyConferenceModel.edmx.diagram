@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6c0b5e5f821345b9a14ade11a6d14782" Name="Diagram1">
-        <EntityTypeShape EntityType="MyConferenceDbModel.Event" Width="1.5" PointX="2.5" PointY="1.375" />
-        <EntityTypeShape EntityType="MyConferenceDbModel.UserEvent" Width="1.5" PointX="5" PointY="1.375" />
-        <EntityTypeShape EntityType="MyConferenceDbModel.User" Width="1.5" PointX="7.375" PointY="1.375" />
+        <EntityTypeShape EntityType="MyConferenceDbModel.Event" Width="1.5" PointX="0.625" PointY="1.5" />
+        <EntityTypeShape EntityType="MyConferenceDbModel.UserEvent" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="MyConferenceDbModel.User" Width="1.5" PointX="5.375" PointY="1.5" />
         <AssociationConnector Association="MyConferenceDbModel.FK_UserEvents_ToEvents" />
         <AssociationConnector Association="MyConferenceDbModel.FK_UserEvents_ToUsers" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -64,6 +64,14 @@ namespace MyConference.Controllers
             return db.Events.OrderBy(e => e.Date).ThenBy(e => e.StartTime);
         }
 
+        // GET: api/EventsApi/username
+        public IQueryable<Event> GetEvents(string userName)
+        {
+            var user = db.Users.FirstOrDefault(u => u.Name == userName);
+            var eventIds = db.UserEvents.Where(ue => ue.UserId == user.Id).Select(ue => ue.EventId);
+            return db.Events.Where(e => eventIds.Contains(e.Id)).OrderBy(e => e.Date).ThenBy(e => e.StartTime);
+        }
+
         // POST: api/EventsApi
         [ResponseType(typeof(Event))]
         public IHttpActionResult PostEvent(Event @event)

@@ -3,11 +3,15 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable'
 import { MdDialog } from '@angular/material';
 
-import { EventDetailComponent } from '../event-detail/event-detail.component';
-import { IEvent } from '../../../shared/models/event';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+
+import { IEvent } from '../../../shared/models/event';
+import { IUserEvent } from '../../../shared/models/user-event';
+import { AuthService } from '../../../shared/services/auth.service';
+import { ArrayHelper } from '../../../shared/utils/array-helper';
+
+import { EventDetailComponent } from '../event-detail/event-detail.component';
 
 
 @Component({
@@ -17,8 +21,10 @@ import 'rxjs/add/operator/catch';
 })
 export class EventPageComponent implements OnInit {
     private eventsUrl: string = 'api/EventsApi';
+    private userEventsUrl: string = 'api/UserEventsApi';
     private events: IEvent[];
     private groupedEvents: GroupedEvents[];
+    private userEvents: IUserEvent[];
 
     get Events(): IEvent[] {
         return this.events;
@@ -39,36 +45,45 @@ export class EventPageComponent implements OnInit {
             evnts => {
                 this.Events = evnts;
                 this.groupEvents();
-            }, //Bind to view
+            },
             err => {
-                // Log errors if any
                 console.log(err);
             });
+        if (this.authService.isAuthorized) {
+            this.getUserEvents(this.authService.token.userName).subscribe(
+                ue => {
+                    console.log(ue);
+                    this.userEvents = ue;
+                },
+                err => {
+                    console.log(err);
+                }
+            );
+        }
 
     }
 
     getEventes(): Observable<IEvent[]> {
         return this.http.get(this.eventsUrl)
-            // ...and calling .json() on the response to return data
             .map((res: Response) => res.json())
-            //...errors if any
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+    getUserEvents(userName: string): Observable<IUserEvent[]> {
+        return this.http.get(this.userEventsUrl + '/?userName=' + userName)
+            .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     private groupEvents() {
-        let date = this.Events[0].Date;
-        let events = new Array<IEvent>();
-        let group = new GroupedEvents();
-        for (var event of this.Events) {
-            if (event.Date !== date) {
-                group.GroupingValue = date;
-                group.Events = events;
-                this.groupedEvents.push(group);
-                events = [];
-                group = new GroupedEvents();
-                date = event.Date;
-            }
-            events.push(event);
+        let dates = this.Events.map(e => e.Date);
+        let uniqDates = ArrayHelper.getUniqeValues(dates);
+
+        for (let date of uniqDates) {
+            let group = new GroupedEvents();
+            group.GroupingValue = date;
+            group.Events = this.Events.filter(e => e.Date === date);
+            this.groupedEvents.push(group);
         }
     }
 
@@ -83,7 +98,7 @@ export class EventPageComponent implements OnInit {
         });
     }
 
-    constructor(private http: Http, public dialog: MdDialog) {
+    constructor(private http: Http, public dialog: MdDialog, private authService: AuthService) {
         this.Events = new Array<IEvent>();
         this.groupedEvents = new Array<GroupedEvents>();
     }

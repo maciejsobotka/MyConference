@@ -18,6 +18,7 @@ namespace MyConferenceModels
         public MyConferenceDbEntities()
             : base("name=MyConferenceDbEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

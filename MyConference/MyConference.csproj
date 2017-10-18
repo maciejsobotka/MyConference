@@ -280,10 +280,12 @@
     <TypeScriptCompile Include="app\app-routing.module.ts" />
     <TypeScriptCompile Include="app\shared\models\event.ts" />
     <TypeScriptCompile Include="app\shared\models\menu-item.ts" />
+    <TypeScriptCompile Include="app\shared\models\user-event.ts" />
     <TypeScriptCompile Include="app\shared\services\toolbar.service.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\components\event\event-detail\event-detail.component.ts" />
+    <TypeScriptCompile Include="app\shared\utils\array-helper.ts" />
     <TypeScriptCompile Include="app\shared\utils\data-helper.ts" />
     <TypeScriptCompile Include="app\components\event\event-page\event-page.component.ts" />
     <TypeScriptCompile Include="app\components\event\event-routing.module.ts" />
