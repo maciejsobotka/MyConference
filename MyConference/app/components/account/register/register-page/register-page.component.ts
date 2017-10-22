@@ -42,7 +42,7 @@ export class RegisterPageComponent {
                         "userName=" + encodeURIComponent(this.form.value.email) + "&password=" + encodeURIComponent(this.form.value.password) + "&grant_type=password",
                         new RequestOptions({ headers: this.headers }))
                     .subscribe(res => {
-                        this.authService.logIn(res.json());
+                        this.authService.setToken(res.json());
                         this.router.navigate(['/home']);
                     }, error => this.formError = error.json().error_description);
             }, error => {

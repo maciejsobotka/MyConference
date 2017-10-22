@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable'
 import { MdDialog } from '@angular/material';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
+import { AuthService } from '../../../shared/services/auth.service';
+import { EventsDataService } from '../../../shared/services/events-data.service';
+import { ArrayHelper } from '../../../shared/utils/array-helper';
 
 import { IEvent } from '../../../shared/models/event';
-import { IUserEvent } from '../../../shared/models/user-event';
-import { AuthService } from '../../../shared/services/auth.service';
-import { ArrayHelper } from '../../../shared/utils/array-helper';
+import { GroupedEvents } from '../../../shared/models/grouped-events';
 
 import { EventDetailComponent } from '../event-detail/event-detail.component';
 
@@ -21,8 +17,6 @@ import { EventDetailComponent } from '../event-detail/event-detail.component';
     styleUrls: ['dist/css/components/event/event-page/event-page.component.css']
 })
 export class EventPageComponent implements OnInit {
-    private eventsUrl: string = 'api/EventsApi';
-    private userEventsUrl: string = 'api/UserEventsApi';
     private events: IEvent[];
     private groupedEvents: GroupedEvents[];
     private userEvents: number[];
@@ -42,42 +36,25 @@ export class EventPageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getEventes().subscribe(
-            evnts => {
+        this.eventsDataService.getEventes()
+            .subscribe(evnts => {
                 this.Events = evnts;
                 this.groupEvents();
-            },
-            err => {
-                console.log(err);
             });
+
         if (this.authService.isAuthorized) {
-            this.getUserEvents(this.authService.token.userName).subscribe(
-                ue => {
+            this.eventsDataService.getStarredEventes(this.authService.getToken().userName)
+                .subscribe(ue => {
                     this.userEvents = ue.map(e => e.Id);
                     this.Events.forEach(e => {
                         if (this.userEvents.some(ue => ue === e.Id)) {
                             e.IsStarred = true;
                         }
                     });
-                },
-                err => {
-                    console.log(err);
                 }
             );
         }
 
-    }
-
-    getEventes(): Observable<IEvent[]> {
-        return this.http.get(this.eventsUrl)
-            .map((res: Response) => res.json())
-            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-    }
-
-    getUserEvents(userName: string): Observable<IEvent[]> {
-        return this.http.get(this.eventsUrl + '/?userName=' + userName)
-            .map((res: Response) => res.json())
-            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     private groupEvents() {
@@ -103,18 +80,9 @@ export class EventPageComponent implements OnInit {
         });
     }
 
-    constructor(private http: Http, public dialog: MdDialog, private authService: AuthService) {
+    constructor(public dialog: MdDialog, private eventsDataService: EventsDataService, private authService: AuthService) {
         this.Events = new Array<IEvent>();
         this.groupedEvents = new Array<GroupedEvents>();
     }
 
-}
-
-export class GroupedEvents {
-    GroupingValue: Date;
-    Events: IEvent[];
-
-    constructor() {
-        this.Events = new Array<IEvent>();
-    }
 }

@@ -1,25 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable'
 import { MdDialog } from '@angular/material';
 
-import { EventDetailComponent } from '../event-detail/event-detail.component';
-import { IEvent } from '../../../shared/models/event';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-
 import { AuthService } from '../../../shared/services/auth.service';
+import { EventsDataService } from '../../../shared/services/events-data.service';
 import { ArrayHelper } from '../../../shared/utils/array-helper';
+
+import { IEvent } from '../../../shared/models/event';
+import { GroupedEvents } from '../../../shared/models/grouped-events';
+
+import { EventDetailComponent } from '../event-detail/event-detail.component';
 
 
 @Component({
-    selector: 'event-personal-page',
-    templateUrl: 'dist/html/components/event/event-personal-page/event-personal-page.component.html',
-    styleUrls: ['dist/css/components/event/event-personal-page/event-personal-page.component.css']
+    selector: 'event-starred-page',
+    templateUrl: 'dist/html/components/event/event-starred-page/event-starred-page.component.html',
+    styleUrls: ['dist/css/components/event/event-starred-page/event-starred-page.component.css']
 })
-export class EventPersonalPageComponent implements OnInit {
-    private eventsUrl: string = 'api/EventsApi';
+export class EventStarredPageComponent implements OnInit {
     private events: IEvent[];
     private groupedEvents: GroupedEvents[];
 
@@ -42,21 +39,14 @@ export class EventPersonalPageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getEventes().subscribe(
-            evnts => {
+        this.eventsDataService.getStarredEventes(this.authService.getToken().userName)
+            .subscribe(evnts => {
                 this.Events = evnts;
                 if (this.AnyEvents) {
+                    this.Events.forEach(e => e.IsStarred = true);
                     this.groupEvents();
                 }
-            },
-            err => console.log(err));
-
-    }
-
-    getEventes(): Observable<IEvent[]> {
-        return this.http.get(this.eventsUrl + '/?userName=' + this.authService.token.userName)
-            .map((res: Response) => res.json())
-            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+            });
     }
 
     private groupEvents() {
@@ -82,18 +72,8 @@ export class EventPersonalPageComponent implements OnInit {
         });
     }
 
-    constructor(private http: Http, public dialog: MdDialog, private authService: AuthService) {
+    constructor(public dialog: MdDialog, private eventsDataService: EventsDataService, private authService: AuthService) {
         this.Events = new Array<IEvent>();
         this.groupedEvents = new Array<GroupedEvents>();
-    }
-
-}
-
-export class GroupedEvents {
-    GroupingValue: Date;
-    Events: IEvent[];
-
-    constructor() {
-        this.Events = new Array<IEvent>();
     }
 }

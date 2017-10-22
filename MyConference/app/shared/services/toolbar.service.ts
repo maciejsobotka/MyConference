@@ -35,7 +35,8 @@ export class ToolbarService {
                     title: route.data.title,
                     icon: route.data.icon,
                     hidden: route.data.hidden,
-                    toolbarHidden: route.data.hiddenToolbar
+                    toolbarHidden: route.data.hiddenToolbar,
+                    authRequired: route.data.authRequired
                 };
             });
     }
@@ -55,7 +56,8 @@ export class ToolbarService {
                 title: cfg.data.title,
                 icon: cfg.data.icon,
                 hidden: cfg.data.hidden,
-                hiddenToolbar: cfg.data.hiddenToolbar
+                hiddenToolbar: cfg.data.hiddenToolbar,
+                authRequired: cfg.data.authRequired
             }
             : undefined;
     }

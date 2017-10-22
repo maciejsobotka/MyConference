@@ -21,7 +21,7 @@
         <md-sidenav #mainSideNav mode="push" closed>
             <md-nav-list>
                 <ng-container *ngFor="let navItem of mainMenuItems">
-                    <a *ngIf="!navItem.hidden" md-list-item md-ripple
+                    <a *ngIf="!navItem.hidden && (!navItem.authRequired || (navItem.authRequired && authService.isAuthorized))" md-list-item md-ripple
                         [routerLink]="[navItem.path]"
                         (click)="mainSideNav.close()">
                         <md-icon class="m-x-sm">{{navItem.icon}}</md-icon>

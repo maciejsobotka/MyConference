@@ -4,4 +4,5 @@
     icon?: string;
     hidden?: boolean;
     hiddenToolbar?: boolean;
+    authRequired?: boolean;
 }

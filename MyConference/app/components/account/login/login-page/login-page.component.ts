@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, Headers, RequestOptions } from '@angular/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../../../shared/services/auth.service';
@@ -13,8 +12,6 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
     styleUrls: ['dist/css/account/login/login-page/login-page.component.css']
 })
 export class LoginPageComponent{
-    private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-
     formError: string;
 
     form = new FormGroup({
@@ -24,18 +21,14 @@ export class LoginPageComponent{
 
     login() {
         this.formError = null;
-        if (this.form.valid) {
-            this.http.post('/Token',
-                "userName=" + encodeURIComponent(this.form.value.email) + "&password=" + encodeURIComponent(this.form.value.password) + "&grant_type=password",
-                new RequestOptions({ headers: this.headers }))
-                .subscribe(res => {
-                    this.authService.logIn(res.json());
-                    this.router.navigate(['/home']);
-                }, error => this.formError = error.json().error_description);
-        }
+        this.authService.logIn(this.form.value.email, this.form.value.password)
+            .subscribe(res => {
+                this.authService.setToken(res.json());
+                this.router.navigate(['/home']);
+            }, error => this.formError = error.json().error_description);
     }
 
-    constructor(private http: Http, private router: Router, private authService: AuthService) {
+    constructor(private router: Router, private authService: AuthService) {
         this.formError = null;
     }
 }

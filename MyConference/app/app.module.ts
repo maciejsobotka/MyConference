@@ -15,6 +15,7 @@ import { LoginModule } from './components/account/login/login.module';
 import { RegisterModule } from './components/account/register/register.module';
 
 import { ToolbarService } from './shared/services/toolbar.service';
+import { EventsDataService } from './shared/services/events-data.service';
 import { AuthService } from './shared/services/auth.service';
 
 import 'hammerjs';
@@ -37,6 +38,7 @@ import 'hammerjs';
     ],
     providers: [
         ToolbarService,
+        EventsDataService,
         AuthService
     ],
     bootstrap: [AppComponent]

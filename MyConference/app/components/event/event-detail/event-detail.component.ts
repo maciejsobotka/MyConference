@@ -19,14 +19,14 @@ export class EventDetailComponent {
 
     onStarBorderClick(): void {
         this.http.post('/api/UserEventsApi',
-                JSON.stringify({ EventId: this.data.Id, UserName: this.authService.token.userName }),
+                JSON.stringify({ EventId: this.data.Id, UserName: this.authService.getToken().userName }),
                 new RequestOptions({ headers: this.headers }))
             .subscribe(() => this.data.IsStarred = true);
     }
 
     onStarClick(): void {
 
-        this.http.delete('/api/UserEventsApi/?eventId=' + this.data.Id + '&userName=' + this.authService.token.userName)
+        this.http.delete('/api/UserEventsApi/?eventId=' + this.data.Id + '&userName=' + this.authService.getToken().userName)
             .subscribe(() => this.data.IsStarred = false);
     }
 

@@ -15,12 +15,18 @@ namespace MyConference.Controllers
             return View("NgApp");
         }
 
+        [Authorize]
+        [Route("event-starred")]
+        public ActionResult AppAuthorizedRoutes()
+        {
+            return View("NgApp");
+        }
+
         [Route("home")]
         [Route("event")]
         [Route("login")]
         [Route("register")]
-        [Route("event-personal")]
-        public ActionResult AppBookmarkableRoutes()
+        public ActionResult AppNormalRoutes()
         {
             return View("NgApp");
         }

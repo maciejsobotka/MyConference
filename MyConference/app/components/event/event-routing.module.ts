@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EventPageComponent } from './event-page/event-page.component';
-import { EventPersonalPageComponent } from './event-personal-page/event-personal-page.component';
+import { EventStarredPageComponent } from './event-starred-page/event-starred-page.component';
 
 const routes: Routes = [{
         path: 'event',
@@ -12,11 +12,12 @@ const routes: Routes = [{
         }
     },
     {
-        path: 'event-personal',
-        component: EventPersonalPageComponent,
+        path: 'event-starred',
+        component: EventStarredPageComponent,
         data: {
             icon: 'event',
-            title: 'Your Event Calendar'
+            title: 'Your Event Calendar',
+            authRequired: true
         }
     }];
 
