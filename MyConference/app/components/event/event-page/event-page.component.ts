@@ -5,6 +5,7 @@ import { MdDialog } from '@angular/material';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
 
 import { IEvent } from '../../../shared/models/event';
 import { IUserEvent } from '../../../shared/models/user-event';
@@ -24,7 +25,7 @@ export class EventPageComponent implements OnInit {
     private userEventsUrl: string = 'api/UserEventsApi';
     private events: IEvent[];
     private groupedEvents: GroupedEvents[];
-    private userEvents: IUserEvent[];
+    private userEvents: number[];
 
     get Events(): IEvent[] {
         return this.events;
@@ -52,8 +53,12 @@ export class EventPageComponent implements OnInit {
         if (this.authService.isAuthorized) {
             this.getUserEvents(this.authService.token.userName).subscribe(
                 ue => {
-                    console.log(ue);
-                    this.userEvents = ue;
+                    this.userEvents = ue.map(e => e.Id);
+                    this.Events.forEach(e => {
+                        if (this.userEvents.some(ue => ue === e.Id)) {
+                            e.IsStarred = true;
+                        }
+                    });
                 },
                 err => {
                     console.log(err);
@@ -69,8 +74,8 @@ export class EventPageComponent implements OnInit {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
-    getUserEvents(userName: string): Observable<IUserEvent[]> {
-        return this.http.get(this.userEventsUrl + '/?userName=' + userName)
+    getUserEvents(userName: string): Observable<IEvent[]> {
+        return this.http.get(this.eventsUrl + '/?userName=' + userName)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }

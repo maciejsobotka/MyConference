@@ -1,7 +1,10 @@
 <div mat-dialog-title>
     <span fxFlex></span>
-    <button *ngIf="authService.isAuthorized" md-icon-button (click)="onStarClick()">
+    <button *ngIf="authService.isAuthorized && !data.IsStarred" md-icon-button (click)="onStarBorderClick()">
         <md-icon>star_border</md-icon>
+    </button>
+    <button *ngIf="authService.isAuthorized && data.IsStarred" md-icon-button (click)="onStarClick()">
+        <md-icon>star</md-icon>
     </button>
     <button md-icon-button (click)="onNoClick()">
         <md-icon>clear</md-icon>

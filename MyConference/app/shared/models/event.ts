@@ -1,5 +1,5 @@
 ﻿export interface IEvent {
-    Id: number
+    Id: number;
     Name: string;
     Date: Date;
     StartTime: Date;
@@ -9,4 +9,6 @@
     Chair: string;
     Location: string;
     Type: number;
+
+    IsStarred: boolean;
 }

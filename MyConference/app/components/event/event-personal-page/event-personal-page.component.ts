@@ -44,7 +44,6 @@ export class EventPersonalPageComponent implements OnInit {
     ngOnInit(): void {
         this.getEventes().subscribe(
             evnts => {
-                console.log(evnts);
                 this.Events = evnts;
                 if (this.AnyEvents) {
                     this.groupEvents();

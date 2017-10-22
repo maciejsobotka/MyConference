@@ -17,11 +17,17 @@ export class EventDetailComponent {
         this.dialogRef.close();
     }
 
-    onStarClick(): void {
+    onStarBorderClick(): void {
         this.http.post('/api/UserEventsApi',
                 JSON.stringify({ EventId: this.data.Id, UserName: this.authService.token.userName }),
                 new RequestOptions({ headers: this.headers }))
-            .subscribe(() => {});
+            .subscribe(() => this.data.IsStarred = true);
+    }
+
+    onStarClick(): void {
+
+        this.http.delete('/api/UserEventsApi/?eventId=' + this.data.Id + '&userName=' + this.authService.token.userName)
+            .subscribe(() => this.data.IsStarred = false);
     }
 
     constructor(public dialogRef: MdDialogRef < EventDetailComponent >, @Inject(MD_DIALOG_DATA) public data: IEvent, private authService: AuthService, private http: Http) { }

@@ -45,6 +45,22 @@ namespace MyConference.Controllers
             return Ok(userEvent);
         }
 
+        // DELETE: api/UserEventsApi/5
+        [ResponseType(typeof(UserEvent))]
+        public IHttpActionResult DeleteUserEvent(int eventId, string userName)
+        {
+            UserEvent userEvent = db.UserEvents.FirstOrDefault(ue => ue.EventId == eventId && ue.User.Name == userName);
+            if (userEvent == null)
+            {
+                return NotFound();
+            }
+
+            db.UserEvents.Remove(userEvent);
+            db.SaveChanges();
+
+            return Ok(userEvent);
+        }
+
         // GET: api/UserEventsApi/5
         [ResponseType(typeof(UserEvent))]
         public IHttpActionResult GetUserEvent(int id)
@@ -68,7 +84,9 @@ namespace MyConference.Controllers
         public IQueryable<UserEvent> GetUserEvents(string userName)
         {
             var user = db.Users.FirstOrDefault(u => u.Name == userName);
-            return db.UserEvents.Where(ue => ue.UserId == user.Id);
+            var ev = db.UserEvents.Where(ue => ue.UserId == user.Id);
+
+            return ev;
         }
 
         // POST: api/UserEventsApi
