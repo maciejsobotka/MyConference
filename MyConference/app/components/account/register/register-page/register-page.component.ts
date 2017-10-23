@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, Headers, RequestOptions } from '@angular/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../../../shared/services/auth.service';
@@ -15,8 +14,6 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
     styleUrls: ['dist/css/account/register/register-page/register-page.component.css']
 })
 export class RegisterPageComponent {
-    private headers = new Headers({ 'Content-Type': 'application/json' });
-
     formError: string;
 
     form = new FormGroup({
@@ -31,16 +28,11 @@ export class RegisterPageComponent {
             ConfirmPassword: this.form.value.password
         }
 
-        this.http.post('/api/Account/Register', JSON.stringify(registerData),
-            new RequestOptions({ headers: this.headers }))
-            .subscribe(() => {
-                this.http.post('/api/UsersApi', JSON.stringify({ Id: 0, Name: registerData.Email }),
-                    new RequestOptions({ headers: this.headers }))
+        this.authService.register(registerData)
+            .subscribe(() => { this.authService.registerUser(registerData.Email)
                     .subscribe(() => { },
                     error => this.formError = error.json().error_description);
-                this.http.post('/Token',
-                        "userName=" + encodeURIComponent(this.form.value.email) + "&password=" + encodeURIComponent(this.form.value.password) + "&grant_type=password",
-                        new RequestOptions({ headers: this.headers }))
+                this.authService.logIn(this.form.value.email, this.form.value.password)
                     .subscribe(res => {
                         this.authService.setToken(res.json());
                         this.router.navigate(['/home']);
@@ -56,5 +48,5 @@ export class RegisterPageComponent {
             });
     }
 
-    constructor(private http: Http, private router: Router, private authService: AuthService) {}
+    constructor(private router: Router, private authService: AuthService) {}
 }

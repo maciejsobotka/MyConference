@@ -19,7 +19,7 @@ export class AppComponent{
     isAuthorized: boolean;
 
     logOut() {
-        this.authService.logOut();
+        this.authService.logOut().subscribe(() => this.authService.removeToken());
     }
 
     constructor(private authService: AuthService, private toolbarService: ToolbarService) {
