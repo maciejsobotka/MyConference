@@ -25,5 +25,7 @@ export class AppComponent{
     constructor(private authService: AuthService, private toolbarService: ToolbarService) {
         this.mainMenuItems = this.toolbarService.getMenuItems();
         this.activeMenuItem$ = this.toolbarService.activeMenuItem$;
+
+        document.getElementById('loader').style.display = "none";
     }
 }
