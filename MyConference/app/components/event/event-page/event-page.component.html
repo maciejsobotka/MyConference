@@ -7,9 +7,6 @@
         <md-card-content>
             {{event.StartTime | date:'HH:mm'}} - {{event.EndTime | date:'HH:mm'}}<br/>
             <ng-container *ngIf="event.Speaker">{{event.Speaker}}<br /></ng-container>
-            <ng-container *ngIf="event.Topic">{{event.Topic}}<br /></ng-container>
-            <ng-container *ngIf="event.Chair">{{event.Chair}}<br /></ng-container>
-            <ng-container *ngIf="event.Location">{{event.Location}}<br /></ng-container>
         </md-card-content>
     </md-card>
 </div>

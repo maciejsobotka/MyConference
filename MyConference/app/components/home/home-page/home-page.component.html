@@ -1,3 +1,29 @@
-<md-card>Home</md-card>
-<md-card *ngIf="authService.isAuthorized">Welcome {{authService.getToken().userName}}!</md-card>
+<md-card>
+    <md-card-title fxLayout="column" fxLayoutAlign="center center">
+        <div *ngIf="authService.isAuthorized" class="content">Welcome {{authService.getToken().userName}}!</div>
+        <div class="content horizontalLineThin"></div>
+        <div class="content" fxLayout.xs="column">
+            <span fxFlexAlign="center">Check out</span>
+            <button md-button class="m-x-sm" fxFlex.xs="100" [routerLink]="['/event']">Events Calendar</button>
+            <span fxFlexAlign="center">to see our offer!</span>
+        </div>
+        <div class="content horizontalLineThin"></div>
+        <div *ngIf="!authService.isAuthorized"class="content" fxLayout.xs="column">
+            <button md-button class="m-x-sm" [routerLink]="['/login']">Log In</button>
+            <span fxFlexAlign="center">or</span>
+            <button md-button class="m-x-sm" [routerLink]="['/register']">Register</button>
+            <span fxFlexAlign="center">to get to personalized&nbsp;</span>
+            <span fxFlexAlign="center">content</span>
+        </div>
+        <div *ngIf="authService.isAuthorized" class="content" fxLayout.xs="column">
+            <span fxFlexAlign="center">Go to</span>
+            <button md-button class="m-x-sm" fxFlex.xs="100" [routerLink]="['/event-starred']">Starred Events</button>
+            <span fxFlexAlign="center">to see events you are&nbsp;</span>
+            <span fxFlexAlign="center">interested in!</span>
+        </div>
+        <div class="content horizontalLineThin" fxFlex="100"></div>
+    </md-card-title>
+</md-card>
+
+
         

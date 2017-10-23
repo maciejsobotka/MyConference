@@ -9,12 +9,13 @@
             <span fxFlex></span>
 
             <button md-icon-button [mdMenuTriggerFor]="userMenu">
-                <md-icon>account_circle</md-icon>
+                <md-icon *ngIf="!authService.isAuthorized">account_circle</md-icon>
+                <md-icon *ngIf="authService.isAuthorized">person</md-icon>
             </button>
         </md-toolbar>
         <md-menu #userMenu x-position="before">
-            <button *ngIf="!authService.isAuthorized" md-menu-item [routerLink]="['login']">Sign In</button>
-            <button *ngIf="authService.isAuthorized" md-menu-item [routerLink]="['home']" (click)="logOut()">Log Out</button>
+            <button *ngIf="!authService.isAuthorized" md-menu-item [routerLink]="['login']" (click)="mainSideNav.close()">Sign In</button>
+            <button *ngIf="authService.isAuthorized" md-menu-item [routerLink]="['home']" (click)="mainSideNav; logOut()">Log Out</button>
         </md-menu>
     </ng-container>
     <md-sidenav-container [ngClass]="{'with-margin': !activeItem.hiddenToolbar}" fullscreen>
