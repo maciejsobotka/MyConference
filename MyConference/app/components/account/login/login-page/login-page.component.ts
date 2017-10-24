@@ -8,8 +8,8 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
 
 @Component({
     selector: 'login-page',
-    templateUrl: 'dist/html/account/login/login-page/login-page.component.html',
-    styleUrls: ['dist/css/account/login/login-page/login-page.component.css']
+    templateUrl: 'dist/html/components/account/login/login-page/login-page.component.html',
+    styleUrls: ['dist/css/components/account/login/login-page/login-page.component.css']
 })
 export class LoginPageComponent{
     formError: string;

@@ -10,8 +10,8 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
 
 @Component({
     selector: 'register-page',
-    templateUrl: 'dist/html/account/register/register-page/register-page.component.html',
-    styleUrls: ['dist/css/account/register/register-page/register-page.component.css']
+    templateUrl: 'dist/html/components/account/register/register-page/register-page.component.html',
+    styleUrls: ['dist/css/components/account/register/register-page/register-page.component.css']
 })
 export class RegisterPageComponent {
     formError: string;
